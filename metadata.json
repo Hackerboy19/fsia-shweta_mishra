@@ -1,0 +1,6 @@
+{
+  "name": "Shweta Mishra Wellness",
+  "description": "Premium holistic wellness landing page for Raipur's premier wellness coach, pharmacist, and astrologer.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

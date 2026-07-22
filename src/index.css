@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Playfair Display", "Georgia", serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  
+  --color-sage-50: #f2f4f0;
+  --color-sage-100: #e8e6de;
+  --color-sage-200: #d5d1c2;
+  --color-sage-300: #acc0b0;
+  --color-sage-400: #93a388;
+  --color-sage-500: #7d8b73;
+  --color-sage-600: #7d8b73;
+  --color-sage-700: #5d6c54;
+  --color-sage-800: #3f4a38;
+  --color-sage-900: #1a1f16;
+  
+  --color-gold-50: #fcfbf7;
+  --color-gold-100: #f6f3e6;
+  --color-gold-200: #ebdca1;
+  --color-gold-300: #debf63;
+  --color-gold-400: #d4af37;
+  --color-gold-500: #b58924;
+  --color-gold-600: #9c6e1b;
+  --color-gold-700: #7f5217;
+
+  --color-cream-main: #f9f8f4;
+  --color-charcoal-main: #2f3e46;
+}
+
+/* Base custom styles for premium scrollbar and transitions */
+html {
+  scroll-behavior: smooth;
+  background-color: var(--color-cream-main);
+  color: var(--color-charcoal-main);
+}
+
+body {
+  background-color: var(--color-cream-main);
+  color: var(--color-charcoal-main);
+}
+
+::selection {
+  background-color: var(--color-sage-200);
+  color: var(--color-sage-900);
+}
+
+/* Custom text utility */
+.text-balance {
+  text-wrap: balance;
+}
