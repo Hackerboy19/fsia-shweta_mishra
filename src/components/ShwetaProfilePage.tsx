@@ -19,8 +19,12 @@ import {
   Microscope,
   GraduationCap,
   Quote,
-  Check
+  Check,
+  ChevronDown,
+  HelpCircle,
+  ArrowUp
 } from 'lucide-react';
+import { faqs } from '../data';
 
 // Hero portrait: drop Shweta's real photo URL/path here to replace the monogram.
 // Leave empty ('') to render the branded monogram fallback.
@@ -217,6 +221,74 @@ function PulseLine({ className = '', color = '#34d399' }: { className?: string; 
         opacity="0.9"
       />
     </svg>
+  );
+}
+
+// Zero-dependency accordion FAQ (grid-rows transition, single-open)
+function FaqAccordion() {
+  const [open, setOpen] = useState<string | null>(faqs[0]?.id ?? null);
+  return (
+    <div className="space-y-3">
+      {faqs.map((item) => {
+        const isOpen = open === item.id;
+        return (
+          <div
+            key={item.id}
+            className={`card-hover rounded-2xl border bg-white overflow-hidden shadow-soft ${
+              isOpen ? 'border-emerald-200' : 'border-gray-100'
+            }`}
+          >
+            <button
+              id={`btn-faq-toggle-${item.id}`}
+              onClick={() => setOpen(isOpen ? null : item.id)}
+              aria-expanded={isOpen}
+              className="w-full p-5 text-left flex items-center justify-between gap-4 font-serif text-sm sm:text-base font-semibold text-gray-900 hover:text-emerald-800 transition-colors"
+            >
+              <span className="flex items-center gap-3">
+                <HelpCircle size={18} className={`shrink-0 ${isOpen ? 'text-emerald-600' : 'text-emerald-500/70'}`} />
+                <span>{item.question}</span>
+              </span>
+              <ChevronDown
+                size={18}
+                className={`shrink-0 text-gray-400 transition-transform duration-300 ${isOpen ? 'rotate-180 text-emerald-600' : ''}`}
+              />
+            </button>
+            <div
+              className="grid transition-[grid-template-rows] duration-300 ease-out"
+              style={{ gridTemplateRows: isOpen ? '1fr' : '0fr' }}
+            >
+              <div className="overflow-hidden">
+                <p className="px-5 pb-5 pt-1 text-xs sm:text-sm text-gray-600 leading-relaxed font-light border-t border-gray-100">
+                  {item.answer}
+                </p>
+              </div>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+// Floating scroll-to-top button (appears once the user scrolls down)
+function ScrollToTop() {
+  const [show, setShow] = useState(false);
+  useEffect(() => {
+    const onScroll = () => setShow(window.scrollY > 700);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+  return (
+    <button
+      aria-label="Back to top"
+      onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+      className={`hidden sm:flex fixed bottom-6 right-6 z-50 w-11 h-11 items-center justify-center rounded-full bg-emerald-800 text-white shadow-lift border border-emerald-700 transition-all duration-300 hover:bg-emerald-900 ${
+        show ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 translate-y-3 pointer-events-none'
+      }`}
+    >
+      <ArrowUp size={18} />
+    </button>
   );
 }
 
@@ -441,6 +513,7 @@ export default function ShwetaProfilePage() {
   return (
     <div className="grain min-h-screen text-gray-800 font-sans antialiased selection:bg-emerald-100 selection:text-emerald-900 pb-28 sm:pb-16">
       <ScrollProgress />
+      <ScrollToTop />
       <MobileActionBar whatsappMessage={whatsappMessage} />
       {/* 1. SEO & Schema Markup Injection for Google Search Console */}
       <script
@@ -616,6 +689,15 @@ export default function ShwetaProfilePage() {
                   { '@type': 'ListItem', 'position': 3, 'name': 'Raipur', 'item': 'https://fsia.in/directory/wellness-coaches/raipur' },
                   { '@type': 'ListItem', 'position': 4, 'name': 'Shweta Mishra' }
                 ]
+              },
+              {
+                '@type': 'FAQPage',
+                '@id': 'https://fsia.in/directory/wellness-coaches/raipur/shweta-mishra#faq',
+                'mainEntity': faqs.map((f) => ({
+                  '@type': 'Question',
+                  'name': f.question,
+                  'acceptedAnswer': { '@type': 'Answer', 'text': f.answer }
+                }))
               }
             ]
           })
@@ -1229,6 +1311,23 @@ export default function ShwetaProfilePage() {
                   </div>
                 ))}
               </StaggerReveal>
+            </section>
+          </FadeInOnScroll>
+
+          {/* SECTION 4b: FREQUENTLY ASKED QUESTIONS */}
+          <FadeInOnScroll>
+            <section
+              id="faq"
+              aria-labelledby="heading-faq"
+              className="bg-white rounded-3xl border border-gray-200/70 shadow-card p-6 sm:p-8 space-y-6"
+            >
+              <SectionHead
+                id="heading-faq"
+                eyebrow="Common Inquiries"
+                title="Frequently Asked Questions"
+                subtitle="Clear, transparent answers on programs, clinical safety, and biological philosophy."
+              />
+              <FaqAccordion />
             </section>
           </FadeInOnScroll>
 
