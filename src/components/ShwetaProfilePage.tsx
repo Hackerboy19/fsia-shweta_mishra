@@ -28,7 +28,7 @@ import { faqs } from '../data';
 
 // Hero portrait: drop Shweta's real photo URL/path here to replace the monogram.
 // Leave empty ('') to render the branded monogram fallback.
-const HERO_PHOTO = '';
+const HERO_PHOTO = '/shweta-mishra.png';
 
 // Single Source of Truth for JSON-LD Aggregate Rating
 const REVIEW_DATA = {
@@ -434,15 +434,19 @@ function Portrait() {
   return (
     <div className="ring-gradient relative">
       {HERO_PHOTO && !failed ? (
-        <img
-          src={HERO_PHOTO}
-          sizes="(max-width: 640px) 192px, (max-width: 768px) 224px, 256px"
-          alt="Shweta Mishra - Best Wellness Coach in Raipur"
-          decoding="async"
-          fetchPriority="high"
-          onError={() => setFailed(true)}
-          className="w-48 h-60 sm:w-56 sm:h-72 md:w-64 md:h-80 object-cover rounded-[1.05rem]"
-        />
+        <div className="w-48 h-60 sm:w-56 sm:h-72 md:w-64 md:h-80 rounded-[1.05rem] overflow-hidden bg-gradient-to-b from-emerald-50 via-emerald-100/50 to-white relative">
+          {/* soft studio glow behind the cutout */}
+          <div className="absolute inset-x-0 top-0 h-2/3 bg-gradient-to-b from-emerald-100/60 to-transparent pointer-events-none" />
+          <img
+            src={HERO_PHOTO}
+            sizes="(max-width: 640px) 192px, (max-width: 768px) 224px, 256px"
+            alt="Shweta Mishra - Best Wellness Coach in Raipur"
+            decoding="async"
+            fetchPriority="high"
+            onError={() => setFailed(true)}
+            className="relative w-full h-full object-cover object-top"
+          />
+        </div>
       ) : (
         <div
           aria-label="Shweta Mishra - Best Wellness Coach in Raipur"
