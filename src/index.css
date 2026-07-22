@@ -1,11 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=JetBrains+Mono:wght@400;500;600&display=swap');
 @import "tailwindcss";
 
 @theme {
   --font-serif: "Playfair Display", "Georgia", serif;
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
-  
+
   --color-sage-50: #f2f4f0;
   --color-sage-100: #e8e6de;
   --color-sage-200: #d5d1c2;
@@ -16,7 +16,7 @@
   --color-sage-700: #5d6c54;
   --color-sage-800: #3f4a38;
   --color-sage-900: #1a1f16;
-  
+
   --color-gold-50: #fcfbf7;
   --color-gold-100: #f6f3e6;
   --color-gold-200: #ebdca1;
@@ -26,11 +26,16 @@
   --color-gold-600: #9c6e1b;
   --color-gold-700: #7f5217;
 
-  --color-cream-main: #f9f8f4;
-  --color-charcoal-main: #2f3e46;
+  --color-cream-main: #faf8f3;
+  --color-charcoal-main: #253536;
+
+  /* Layered premium shadows */
+  --shadow-soft: 0 1px 2px rgba(37,53,54,0.04), 0 4px 12px rgba(37,53,54,0.05);
+  --shadow-card: 0 1px 3px rgba(37,53,54,0.05), 0 12px 32px -8px rgba(37,53,54,0.10);
+  --shadow-lift: 0 2px 6px rgba(37,53,54,0.06), 0 22px 48px -12px rgba(37,53,54,0.18);
+  --shadow-glow-emerald: 0 8px 24px -6px rgba(6,78,59,0.35);
 }
 
-/* Base custom styles for premium scrollbar and transitions */
 html {
   scroll-behavior: smooth;
   background-color: var(--color-cream-main);
@@ -38,16 +43,179 @@ html {
 }
 
 body {
+  /* Warm, layered ambient background instead of flat cream.
+     No background-attachment:fixed — it forces full-page repaints on every
+     scroll frame (jank). A plain scrolling gradient composites cheaply. */
   background-color: var(--color-cream-main);
+  background-image:
+    radial-gradient(1100px 520px at 78% -8%, rgba(212,175,55,0.10), transparent 60%),
+    radial-gradient(900px 500px at -6% 8%, rgba(6,78,59,0.06), transparent 55%);
   color: var(--color-charcoal-main);
+  -webkit-font-smoothing: antialiased;
 }
 
 ::selection {
-  background-color: var(--color-sage-200);
-  color: var(--color-sage-900);
+  background-color: #d1e7dd;
+  color: #064e3b;
 }
 
-/* Custom text utility */
-.text-balance {
-  text-wrap: balance;
+/* Refined premium scrollbar */
+::-webkit-scrollbar { width: 11px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: #cfd8cf;
+  border: 3px solid var(--color-cream-main);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover { background: #aebcae; }
+
+.text-balance { text-wrap: balance; }
+.text-pretty { text-wrap: pretty; }
+
+/* Utility: layered elevation */
+.shadow-soft { box-shadow: var(--shadow-soft); }
+.shadow-card { box-shadow: var(--shadow-card); }
+.shadow-lift { box-shadow: var(--shadow-lift); }
+
+/* Card lift on hover */
+.card-hover {
+  transition: transform .35s cubic-bezier(.22,.61,.36,1), box-shadow .35s cubic-bezier(.22,.61,.36,1), border-color .35s ease;
+  will-change: transform;
+}
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lift);
+}
+
+/* Gilded gradient text */
+.text-gilded {
+  background: linear-gradient(100deg, #b58924 0%, #e6c760 45%, #9c6e1b 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Primary CTA with animated light sheen */
+.btn-sheen { position: relative; overflow: hidden; }
+.btn-sheen::after {
+  content: "";
+  position: absolute;
+  top: 0; left: -140%;
+  width: 60%; height: 100%;
+  background: linear-gradient(100deg, transparent, rgba(255,255,255,0.35), transparent);
+  transform: skewX(-18deg);
+  transition: left .7s cubic-bezier(.22,.61,.36,1);
+}
+.btn-sheen:hover::after { left: 140%; }
+
+/* Hairline gradient ring for hero frame */
+.ring-gradient {
+  background: linear-gradient(150deg, #ffffff, #f4efe2 40%, #ffffff);
+  padding: 6px;
+  border-radius: 1.35rem;
+  box-shadow: var(--shadow-card);
+}
+
+/* Section eyebrow underline shimmer */
+@keyframes barGrow {
+  from { width: 0; }
+}
+.animate-bar { animation: barGrow 1.1s cubic-bezier(.22,.61,.36,1) both; }
+
+@keyframes floaty {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+.animate-floaty { animation: floaty 5s ease-in-out infinite; }
+
+/* Primary CTA breathing glow */
+@keyframes glowPulse {
+  0%,100% { box-shadow: 0 8px 24px -6px rgba(6,78,59,0.45); }
+  50% { box-shadow: 0 10px 30px -4px rgba(6,78,59,0.60), 0 0 0 4px rgba(16,185,129,0.10); }
+}
+.glow-pulse { animation: glowPulse 3.2s ease-in-out infinite; }
+
+/* Fine paper grain overlay for premium tactile surface.
+   No mix-blend-mode (blending a fixed layer over the whole animated page every
+   frame is a major scroll-jank source); a low-opacity fixed tile is near-free. */
+.grain::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.4;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+}
+
+/* Scroll offset so anchored sections clear the sticky nav */
+section[id] { scroll-margin-top: 84px; }
+
+/* Count-up + fade for stat strip */
+@keyframes statUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.stat-in { animation: statUp .6s cubic-bezier(.22,.61,.36,1) both; }
+
+/* Heartbeat — health-themed pulse for Heart icons */
+@keyframes heartbeat {
+  0%, 28%, 70%, 100% { transform: scale(1); }
+  14% { transform: scale(1.22); }
+  42% { transform: scale(1.14); }
+}
+.animate-heartbeat { animation: heartbeat 1.8s ease-in-out infinite; transform-origin: center; }
+
+/* ECG pulse-line — draws + sweeps a health monitor trace */
+@keyframes ecgDash {
+  from { stroke-dashoffset: 620; }
+  to { stroke-dashoffset: 0; }
+}
+@keyframes ecgBlip {
+  0%, 100% { opacity: 0; transform: translateX(-8%); }
+  50% { opacity: 1; }
+  90% { opacity: 0.6; }
+}
+.ecg-path { stroke-dasharray: 620; animation: ecgDash 3.2s linear infinite; }
+.ecg-blip { animation: ecgBlip 3.2s linear infinite; }
+
+/* Hero H1 word-by-word entrance */
+@keyframes wordUp {
+  from { opacity: 0; transform: translateY(0.5em) rotate(1deg); }
+  to { opacity: 1; transform: translateY(0) rotate(0); }
+}
+.word-reveal { display: inline-block; opacity: 0; animation: wordUp .7s cubic-bezier(.22,.61,.36,1) forwards; }
+
+/* Staggered cascade: container toggles .is-in, children ride --i delay */
+.stagger > * {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity .6s cubic-bezier(.22,.61,.36,1), transform .6s cubic-bezier(.22,.61,.36,1);
+  transition-delay: calc(var(--i, 0) * 90ms);
+}
+.stagger.is-in > * { opacity: 1; transform: translateY(0); }
+
+/* Live "online" availability ring for WhatsApp CTAs */
+@keyframes livePing {
+  0% { transform: scale(1); opacity: 0.55; }
+  70%, 100% { transform: scale(2.2); opacity: 0; }
+}
+.live-dot { position: relative; }
+.live-dot::before {
+  content: "";
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 8px; height: 8px; margin: -4px 0 0 -4px;
+  border-radius: 999px;
+  background: #34d399;
+  box-shadow: 0 0 0 0 rgba(52,211,153,0.6);
+  animation: livePing 1.8s ease-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-bar, .animate-floaty, .btn-sheen::after, .glow-pulse, .stat-in,
+  .animate-heartbeat, .ecg-path, .ecg-blip, .word-reveal, .live-dot::before { animation: none; }
+  .word-reveal { opacity: 1; }
+  .stagger > * { opacity: 1; transform: none; transition: none; }
+  html { scroll-behavior: auto; }
 }

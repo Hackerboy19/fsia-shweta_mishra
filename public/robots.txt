@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+
+# Major crawlers explicitly welcomed
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+Sitemap: https://fsia.in/directory/wellness-coaches/raipur/shweta-mishra/sitemap.xml
