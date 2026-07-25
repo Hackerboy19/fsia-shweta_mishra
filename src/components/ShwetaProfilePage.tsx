@@ -119,31 +119,30 @@ function CountUp({
   return <span ref={ref}>{val.toFixed(decimals)}{suffix}</span>;
 }
 
-// Sticky bottom call-to-action bar (mobile only) — keeps contact one tap away
-function MobileActionBar({ whatsappMessage }: { whatsappMessage: string }) {
+// Sticky bottom action bar (mobile only): merged Contact + FSIA Team + Apply Now
+function MobileActionBar({ onContact, onTeam }: { onContact: () => void; onTeam: () => void }) {
   return (
     <div className="sm:hidden fixed bottom-0 inset-x-0 z-50 p-3 bg-white/95 backdrop-blur-md border-t border-gray-200/80 shadow-[0_-8px_24px_-12px_rgba(37,53,54,0.25)]">
       <div className="flex items-center gap-2.5">
-        <a
-          href="tel:+919425212345"
+        <button
+          onClick={onContact}
           className="flex-1 flex items-center justify-center gap-1.5 py-3 rounded-xl border border-emerald-200 bg-emerald-50 text-emerald-800 font-bold text-xs uppercase tracking-wider"
         >
-          <PhoneCall size={15} /> Call
-        </a>
-        <a
-          href={`https://wa.me/919425212345?text=${whatsappMessage}`}
-          target="_blank"
-          rel="noopener noreferrer"
+          <PhoneCall size={15} /> Contact
+        </button>
+        <button
+          onClick={onTeam}
           className="flex-1 flex items-center justify-center gap-1.5 py-3 rounded-xl bg-emerald-600 text-white font-bold text-xs uppercase tracking-wider"
         >
-          <span className="live-dot w-1.5 h-1.5 rounded-full bg-emerald-300 shrink-0" aria-hidden="true" />
-          <MessageSquare size={15} /> WhatsApp
-        </a>
+          <UserCheck size={15} /> FSIA Team
+        </button>
         <a
-          href="#consultation"
-          className="btn-sheen flex-[1.4] flex items-center justify-center gap-1.5 py-3 rounded-xl bg-gradient-to-b from-emerald-700 to-emerald-800 text-white font-bold text-xs uppercase tracking-wider shadow-[0_6px_16px_-6px_rgba(6,78,59,0.5)]"
+          href="https://fsia.in/quickapply"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="btn-sheen flex-[1.3] flex items-center justify-center gap-1.5 py-3 rounded-xl bg-gradient-to-b from-emerald-700 to-emerald-800 text-white font-bold text-xs uppercase tracking-wider shadow-[0_6px_16px_-6px_rgba(6,78,59,0.5)]"
         >
-          <Calendar size={15} /> Book
+          <ChevronRight size={15} /> Apply Now
         </a>
       </div>
     </div>
@@ -466,14 +465,22 @@ const TESTIMONIALS = [
   { quote: 'Her empathy and weekly follow-ups kept me motivated. She explains the scientific reason behind every food choice. Truly deserving of the FSIA Super Woman Award!', name: 'Kavita Sahu', city: 'Durg' },
 ];
 
-// Wellness programs shown in the "Solutions" icon grid
+// Wellness programs shown in the "Solutions" icon grid (tap to reveal detail)
 const SOLUTIONS = [
-  { Icon: Activity, title: 'Weight Management', tone: 'bg-emerald-100 text-emerald-800' },
-  { Icon: Heart, title: 'PCOD & Hormone Care', tone: 'bg-rose-100 text-rose-700' },
-  { Icon: Microscope, title: 'Thyroid & Metabolism', tone: 'bg-amber-100 text-amber-700' },
-  { Icon: ShieldCheck, title: 'Diabetes Reversal', tone: 'bg-emerald-100 text-emerald-800' },
-  { Icon: Sparkles, title: 'Lifestyle & Bio-Rhythm', tone: 'bg-violet-100 text-violet-700' },
-  { Icon: BookOpen, title: 'Preventive Health', tone: 'bg-sky-100 text-sky-700' },
+  { Icon: Activity, title: 'Weight Management', tone: 'bg-emerald-100 text-emerald-800', desc: 'Non-starvation fat loss — metabolic reset, cellular nutrition and stable blood sugar, built on Shweta’s own 18kg journey.' },
+  { Icon: Heart, title: 'PCOD & Hormone Care', tone: 'bg-rose-100 text-rose-700', desc: 'Root-cause protocols to restore regular cycles and balance hormones and insulin — food-first, no crash diets.' },
+  { Icon: Microscope, title: 'Thyroid & Metabolism', tone: 'bg-amber-100 text-amber-700', desc: 'Gentle, pharmacist-guided support for sluggish thyroid and a slow metabolism, safely alongside your medicines.' },
+  { Icon: ShieldCheck, title: 'Diabetes Reversal', tone: 'bg-emerald-100 text-emerald-800', desc: 'Lifestyle plans to reverse Type-2 pre-diabetes and stabilise blood sugar with clinically safe changes.' },
+  { Icon: Sparkles, title: 'Lifestyle & Bio-Rhythm', tone: 'bg-violet-100 text-violet-700', desc: 'Sleep, stress and circadian alignment for lasting energy, calm and hormonal balance.' },
+  { Icon: BookOpen, title: 'Preventive Health', tone: 'bg-sky-100 text-sky-700', desc: 'Simple daily habits to prevent illness and stay vibrant and medicine-free for the long run.' },
+];
+
+// FSIA team members (placeholder — replace with real names/roles)
+const TEAM = [
+  { name: 'Forever Star India Awards', role: 'National Awards & Directory Body', initials: 'FS' },
+  { name: 'Nominations Desk', role: 'Awardee onboarding & verification', initials: 'ND' },
+  { name: 'Profile Support', role: 'Directory profiles & updates', initials: 'PS' },
+  { name: 'Media & PR', role: 'Press, features & coverage', initials: 'MP' },
 ];
 
 // "Why work with me" differentiators
@@ -524,6 +531,10 @@ function Testimonials() {
 export default function ShwetaProfilePage() {
   const [activeTab, setActiveTab] = useState<'bio' | 'expertise' | 'awards' | 'reviews'>('bio');
   const [menuOpen, setMenuOpen] = useState(false);
+  const [openSol, setOpenSol] = useState<string | null>(null);
+  const [contactOpen, setContactOpen] = useState(false);
+  const [teamOpen, setTeamOpen] = useState(false);
+  const [galleryOpen, setGalleryOpen] = useState(false);
   const menu = [
     { label: 'Programs', href: '#solutions' },
     { label: 'About', href: '#about' },
@@ -587,7 +598,7 @@ export default function ShwetaProfilePage() {
     <div className="grain min-h-screen text-gray-800 font-sans antialiased selection:bg-emerald-100 selection:text-emerald-900 pb-28 sm:pb-16">
       <ScrollProgress />
       <ScrollToTop />
-      <MobileActionBar whatsappMessage={whatsappMessage} />
+      <MobileActionBar onContact={() => setContactOpen(true)} onTeam={() => setTeamOpen(true)} />
       {/* 1. SEO & Schema Markup Injection for Google Search Console */}
       <script
         type="application/ld+json"
@@ -780,13 +791,11 @@ export default function ShwetaProfilePage() {
       {/* APP-STYLE STICKY HEADER (logo + menu) */}
       <header className="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-gray-200/70">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
-          <a href="#top" className="flex items-center gap-2">
-            <span className="w-8 h-8 rounded-lg bg-gradient-to-br from-emerald-600 to-emerald-800 text-white grid place-items-center shadow-sm">
-              <Heart size={16} className="fill-white/30" />
-            </span>
-            <span className="font-serif font-bold text-gray-900 leading-none">
-              Shweta Mishra
-              <span className="block text-[9px] font-sans font-semibold uppercase tracking-[0.16em] text-emerald-700/70 mt-0.5">Wellness &amp; Pharmacy</span>
+          <a href="#top" className="flex items-center gap-2.5">
+            <img src="/fsia-logo.gif" alt="FSIA — Forever Star India Awards" width={40} height={40} className="w-10 h-10 object-contain shrink-0" />
+            <span className="leading-none">
+              <span className="block font-serif font-bold text-lg text-gray-900 tracking-wide">FSIA</span>
+              <span className="block text-[9px] font-sans font-semibold uppercase tracking-[0.14em] text-emerald-700/70 mt-0.5">Forever Star India Awards</span>
             </span>
           </a>
 
@@ -832,26 +841,29 @@ export default function ShwetaProfilePage() {
 
       <span id="top" />
 
-      {/* Directory Platform Sub-Header Banner */}
-      <div className="bg-gradient-to-r from-slate-950 via-slate-900 to-emerald-950 text-slate-300 py-2.5 px-4 text-xs border-b border-slate-800/80">
-        <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
-          <div className="flex items-center gap-2">
-            <span className="bg-gradient-to-r from-amber-400 to-amber-500 text-slate-950 font-bold text-[10px] px-2 py-0.5 rounded tracking-wider uppercase font-mono shadow-sm">
-              FSIA Verified
+      {/* Directory Platform Sub-Header Banner — enhanced */}
+      <div className="relative bg-gradient-to-r from-slate-950 via-emerald-950 to-slate-950 text-slate-300 px-4 py-2.5 text-xs border-b border-emerald-900/60 overflow-hidden">
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-amber-400/60 to-transparent" />
+        <div className="absolute -right-10 -top-10 w-40 h-40 bg-amber-400/10 rounded-full blur-2xl pointer-events-none" />
+        <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 relative z-10">
+          <div className="flex items-center gap-2.5 min-w-0">
+            <span className="flex items-center gap-1 bg-gradient-to-r from-amber-400 to-amber-500 text-slate-950 font-bold text-[10px] px-2 py-0.5 rounded-full tracking-wider uppercase shadow-sm shrink-0">
+              <ShieldCheck size={11} /> Verified
             </span>
-            <span className="font-medium text-slate-200">
-              Forever Star India Awards &bull; National Official Directory
+            <span className="font-semibold text-white truncate">Shweta Mishra</span>
+            <span className="hidden sm:inline text-slate-400">&bull; Best Wellness Coach in Raipur</span>
+            <span className="flex items-center gap-0.5 text-amber-400 shrink-0" aria-label="5.0 rating">
+              {[...Array(5)].map((_, i) => <Star key={i} size={10} className="fill-amber-400" />)}
+              <span className="ml-1 font-mono text-[10px] text-amber-300">5.0</span>
             </span>
           </div>
-          <div className="flex items-center gap-4 text-[11px]">
-            <span className="text-amber-400 flex items-center gap-1 font-semibold">
-              <ShieldCheck size={13} /> Verified Profile #FSIA-2026-WM88
-            </span>
+          <div className="flex items-center gap-3 text-[11px] shrink-0">
+            <span className="hidden sm:inline text-slate-400 font-mono">#FSIA-2026-WM88</span>
             <a
               href="https://fsia.in"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-slate-400 hover:text-white transition-colors flex items-center gap-1"
+              className="text-amber-300 hover:text-white transition-colors flex items-center gap-1 font-semibold"
             >
               fsia.in <ExternalLink size={11} />
             </a>
@@ -866,21 +878,21 @@ export default function ShwetaProfilePage() {
         <nav aria-label="breadcrumb" className="py-3 text-xs text-gray-500 font-sans">
           <ol className="flex items-center gap-2 flex-wrap">
             <li>
-              <a href="https://fsia.in" className="hover:text-emerald-700 transition-colors">
+              <a href="https://fsia.in/nominate" target="_blank" rel="noopener noreferrer" className="hover:text-emerald-700 transition-colors">
                 Home
               </a>
             </li>
             <li className="text-gray-300">/</li>
             <li>
-              <a href="https://fsia.in/directory/wellness-coaches" className="hover:text-emerald-700 transition-colors">
-                Wellness Coaches
+              <a href="https://fsia.in/awardees" target="_blank" rel="noopener noreferrer" className="hover:text-emerald-700 transition-colors">
+                Awardees
               </a>
             </li>
             <li className="text-gray-300">/</li>
             <li>
-              <a href="https://fsia.in/directory/wellness-coaches/raipur" className="hover:text-emerald-700 transition-colors">
-                Raipur
-              </a>
+              <button onClick={() => setGalleryOpen(true)} className="hover:text-emerald-700 transition-colors">
+                Gallery
+              </button>
             </li>
             <li className="text-gray-300">/</li>
             <li className="font-semibold text-gray-900" aria-current="page">
@@ -974,13 +986,31 @@ export default function ShwetaProfilePage() {
           <FadeInOnScroll>
             <section id="solutions" aria-labelledby="heading-solutions" className="bg-white rounded-3xl border border-gray-200/70 shadow-card p-6 sm:p-8 space-y-6">
               <SectionHead id="heading-solutions" eyebrow="Core Programs" title="Wellness for Every Stage of Life" subtitle="Structured, medicine-free protocols tailored to your body and your goals." />
-              <StaggerReveal as="ul" className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
-                {SOLUTIONS.map(({ Icon, title, tone }) => (
-                  <li key={title} className="card-hover group p-4 sm:p-5 bg-gradient-to-b from-slate-50/70 to-white rounded-2xl border border-gray-100 hover:border-emerald-200 flex flex-col items-center text-center gap-2.5 shadow-soft">
-                    <span className={`w-12 h-12 rounded-2xl flex items-center justify-center ${tone} group-hover:scale-105 transition-transform`}><Icon size={22} /></span>
-                    <span className="text-xs sm:text-sm font-semibold text-gray-800 leading-tight">{title}</span>
-                  </li>
-                ))}
+              <StaggerReveal as="ul" className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4 items-start">
+                {SOLUTIONS.map(({ Icon, title, tone, desc }) => {
+                  const isOpen = openSol === title;
+                  return (
+                    <li key={title} className={`group rounded-2xl border bg-gradient-to-b from-slate-50/70 to-white shadow-soft transition-colors ${isOpen ? 'border-emerald-300' : 'border-gray-100 hover:border-emerald-200'}`}>
+                      <button
+                        onClick={() => setOpenSol(isOpen ? null : title)}
+                        aria-expanded={isOpen}
+                        className="w-full p-4 sm:p-5 flex flex-col items-center text-center gap-2.5"
+                      >
+                        <span className={`w-12 h-12 rounded-2xl flex items-center justify-center ${tone} group-hover:scale-105 transition-transform`}><Icon size={22} /></span>
+                        <span className="text-xs sm:text-sm font-semibold text-gray-800 leading-tight">{title}</span>
+                        <span className="inline-flex items-center gap-1 text-[10px] font-semibold text-emerald-700/80">
+                          {isOpen ? 'Close' : 'Learn more'}
+                          <ChevronDown size={12} className={`transition-transform ${isOpen ? 'rotate-180' : ''}`} />
+                        </span>
+                      </button>
+                      <div className="grid transition-[grid-template-rows] duration-300 ease-out" style={{ gridTemplateRows: isOpen ? '1fr' : '0fr' }}>
+                        <div className="overflow-hidden">
+                          <p className="px-4 sm:px-5 pb-4 pt-0 text-[11px] sm:text-xs text-gray-600 leading-relaxed text-center">{desc}</p>
+                        </div>
+                      </div>
+                    </li>
+                  );
+                })}
               </StaggerReveal>
             </section>
           </FadeInOnScroll>
@@ -1089,6 +1119,66 @@ export default function ShwetaProfilePage() {
         </div>
 
       </div>
+
+      {/* CONTACT SHEET (merged Call + WhatsApp) */}
+      {contactOpen && (
+        <div className="fixed inset-0 z-[70] flex items-end sm:items-center justify-center" role="dialog" aria-modal="true">
+          <div className="absolute inset-0 bg-slate-950/50 backdrop-blur-sm" onClick={() => setContactOpen(false)} />
+          <div className="relative w-full sm:max-w-sm bg-white rounded-t-3xl sm:rounded-3xl p-6 shadow-lift">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="font-serif font-bold text-lg text-gray-900">Contact Shweta</h3>
+              <button onClick={() => setContactOpen(false)} aria-label="Close" className="w-8 h-8 grid place-items-center rounded-full bg-gray-100 text-gray-500">✕</button>
+            </div>
+            <div className="space-y-3">
+              <a href="tel:+919425212345" className="flex items-center gap-3 p-3.5 rounded-2xl border border-emerald-200 bg-emerald-50">
+                <span className="w-10 h-10 rounded-full bg-emerald-600 text-white grid place-items-center"><PhoneCall size={18} /></span>
+                <span><strong className="block text-sm text-gray-900">Call now</strong><span className="text-xs text-gray-500 font-mono">+91 94252 12345</span></span>
+              </a>
+              <a href={`https://wa.me/919425212345?text=${whatsappMessage}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 p-3.5 rounded-2xl border border-emerald-200 bg-white">
+                <span className="w-10 h-10 rounded-full bg-emerald-500 text-white grid place-items-center"><MessageSquare size={18} /></span>
+                <span><strong className="block text-sm text-gray-900">WhatsApp</strong><span className="text-xs text-gray-500">Chat instantly</span></span>
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* FSIA TEAM MODAL */}
+      {teamOpen && (
+        <div className="fixed inset-0 z-[70] flex items-end sm:items-center justify-center" role="dialog" aria-modal="true">
+          <div className="absolute inset-0 bg-slate-950/50 backdrop-blur-sm" onClick={() => setTeamOpen(false)} />
+          <div className="relative w-full sm:max-w-sm bg-white rounded-t-3xl sm:rounded-3xl p-6 shadow-lift max-h-[80vh] overflow-y-auto">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="font-serif font-bold text-lg text-gray-900">FSIA Team</h3>
+              <button onClick={() => setTeamOpen(false)} aria-label="Close" className="w-8 h-8 grid place-items-center rounded-full bg-gray-100 text-gray-500">✕</button>
+            </div>
+            <ul className="space-y-2.5">
+              {TEAM.map((m) => (
+                <li key={m.name} className="flex items-center gap-3 p-3 rounded-2xl border border-gray-100 bg-slate-50/60">
+                  <span className="w-10 h-10 rounded-full bg-gradient-to-br from-emerald-500 to-emerald-700 text-white text-xs font-bold grid place-items-center shrink-0">{m.initials}</span>
+                  <span><strong className="block text-sm text-gray-900 leading-tight">{m.name}</strong><span className="text-xs text-gray-500">{m.role}</span></span>
+                </li>
+              ))}
+            </ul>
+            <a href="https://fsia.in" target="_blank" rel="noopener noreferrer" className="mt-4 block text-center text-xs font-semibold text-emerald-700">Visit fsia.in →</a>
+          </div>
+        </div>
+      )}
+
+      {/* GALLERY MODAL (profile photo) */}
+      {galleryOpen && (
+        <div className="fixed inset-0 z-[70] flex items-center justify-center p-4" role="dialog" aria-modal="true">
+          <div className="absolute inset-0 bg-slate-950/70 backdrop-blur-sm" onClick={() => setGalleryOpen(false)} />
+          <div className="relative w-full max-w-xs">
+            <button onClick={() => setGalleryOpen(false)} aria-label="Close" className="absolute -top-10 right-0 w-9 h-9 grid place-items-center rounded-full bg-white/90 text-gray-700">✕</button>
+            <div className="rounded-3xl overflow-hidden border-4 border-white shadow-lift bg-emerald-950">
+              <img src="/shweta-mishra.png" alt="Shweta Mishra" className="w-full h-auto object-cover" />
+            </div>
+            <p className="text-center text-white text-sm font-semibold mt-3">Shweta Mishra</p>
+            <p className="text-center text-slate-300 text-xs">Best Wellness Coach in Raipur</p>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
