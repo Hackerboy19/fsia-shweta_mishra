@@ -894,119 +894,80 @@ export default function ShwetaProfilePage() {
 
           {/* PROFILE HERO CARD */}
           <FadeInOnScroll>
-            <div className="bg-gradient-to-br from-white via-[#faf9f6] to-white rounded-3xl border border-gray-200/70 shadow-card p-6 sm:p-8 relative overflow-hidden">
-            {/* Background Accent Gradients */}
-            <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-amber-200/30 via-emerald-100/20 to-transparent rounded-full blur-3xl pointer-events-none" />
-            <div className="absolute -bottom-24 -left-16 w-80 h-80 bg-gradient-to-tr from-emerald-100/40 to-transparent rounded-full blur-3xl pointer-events-none" />
-            {/* Top gilded hairline */}
-            <div className="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-transparent via-amber-400/70 to-transparent" />
+            <div className="relative rounded-3xl overflow-hidden shadow-card bg-gradient-to-br from-slate-900 via-emerald-950 to-slate-900 min-h-[380px] sm:min-h-[440px]">
+            {/* ambient glow */}
+            <div className="absolute top-0 right-1/4 w-96 h-96 bg-emerald-500/15 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-transparent via-emerald-400/60 to-transparent" />
 
-            <div className="flex flex-row gap-4 sm:gap-8 items-start relative z-10">
+            {/* edge-bleed portrait, anchored bottom-right */}
+            <img
+              src="/dummy-portrait.svg"
+              alt="Shweta Mishra - Best Wellness Coach in Raipur"
+              decoding="async"
+              fetchPriority="high"
+              className="photo-in absolute bottom-0 right-0 h-[78%] sm:h-[92%] w-auto object-contain object-bottom pointer-events-none select-none"
+            />
+            {/* left-to-right scrim so text stays readable over the photo */}
+            <div className="absolute inset-0 bg-gradient-to-r from-slate-900 via-slate-900/85 to-transparent" />
 
-              {/* Text Column */}
-              <div className="flex-1 min-w-0 space-y-4">
-                <span className="stat-in inline-block text-xs sm:text-sm font-medium text-gray-500" style={{ animationDelay: '60ms' }}>Hi, I&rsquo;m</span>
+            {/* Text */}
+            <div className="relative z-10 p-6 sm:p-8 md:p-10 max-w-[64%] sm:max-w-[60%] space-y-4">
+              <span className="stat-in inline-block text-xs sm:text-sm font-medium text-emerald-200/80" style={{ animationDelay: '60ms' }}>Hi, I&rsquo;m</span>
 
-                <h1 className="font-serif font-bold tracking-tight leading-[1.02]">
-                  <span className="block text-4xl sm:text-5xl md:text-6xl text-gray-900 word-reveal" style={{ animationDelay: '160ms' }}>Shweta</span>
-                  <span className="relative inline-block">
-                    <span className="block text-4xl sm:text-5xl md:text-6xl text-gilded word-reveal" style={{ animationDelay: '300ms' }}>Mishra</span>
-                    <Sparkles size={16} className="sparkle" style={{ top: '-2px', right: '-14px', animationDelay: '1s' } as React.CSSProperties} />
-                  </span>
-                </h1>
-
-                <p className="stat-in text-sm sm:text-lg font-semibold text-emerald-800 flex items-center gap-2" style={{ animationDelay: '440ms' }}>
-                  <Microscope size={17} className="text-emerald-600 shrink-0" />
-                  <span>Best Wellness Coach in Raipur &amp; Registered Pharmacist</span>
-                </p>
-
-                <p className="stat-in text-xs sm:text-sm text-gray-600 font-light leading-relaxed max-w-md" style={{ animationDelay: '560ms' }}>
-                  Helping women and families across Raipur achieve vibrant, medicine-free health &mdash; the safe, starvation-free way.
-                </p>
-
-                {/* Primary CTA */}
-                <div className="stat-in pt-1 flex flex-wrap items-center gap-x-4 gap-y-2" style={{ animationDelay: '680ms' }}>
-                  <a
-                    id="btn-hero-primary-consult"
-                    href="#consultation"
-                    className="btn-sheen glow-pulse inline-flex items-center gap-2 px-6 py-3.5 bg-gradient-to-b from-emerald-700 to-emerald-800 hover:from-emerald-800 hover:to-emerald-900 text-white font-bold text-xs sm:text-sm tracking-wider uppercase rounded-xl shadow-[0_10px_28px_-8px_rgba(6,78,59,0.5)] transition-all group"
-                  >
-                    <span>Get Free Consultation</span>
-                    <ChevronRight size={16} className="group-hover:translate-x-0.5 transition-transform" />
-                  </a>
-                  <a
-                    id="btn-hero-whatsapp"
-                    href={`https://wa.me/919425212345?text=${whatsappMessage}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-800 hover:text-emerald-900"
-                  >
-                    <span className="live-dot w-2 h-2 rounded-full bg-emerald-400 shrink-0" aria-hidden="true" />
-                    <MessageSquare size={15} /> WhatsApp
-                  </a>
-                </div>
-
-                {/* Social proof */}
-                <div className="stat-in flex items-center gap-3 pt-2" style={{ animationDelay: '820ms' }}>
-                  <div className="flex -space-x-2.5">
-                    {['P', 'A', 'K'].map((n, i) => (
-                      <span
-                        key={n}
-                        className="stat-in w-8 h-8 rounded-full bg-gradient-to-br from-emerald-500 to-emerald-700 text-white text-[11px] font-bold flex items-center justify-center ring-2 ring-white"
-                        style={{ animationDelay: `${900 + i * 110}ms` }}
-                      >
-                        {n}
-                      </span>
-                    ))}
-                  </div>
-                  <div className="text-xs leading-tight">
-                    <strong className="block text-gray-900 font-bold"><CountUp end={500} suffix="+" /> Happy Clients</strong>
-                    <span className="text-gray-500">Across Raipur &amp; Central India</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Photo Column */}
-              <div className="shrink-0 relative animate-floaty">
-                <div className="w-32 h-44 sm:w-52 sm:h-64 md:w-64 md:h-80 rounded-2xl overflow-hidden ring-1 ring-emerald-100 shadow-2xl shadow-emerald-900/15 bg-gradient-to-b from-emerald-100/60 via-emerald-50 to-white">
-                  <img
-                    src="/dummy-portrait.svg"
-                    alt="Shweta Mishra - Best Wellness Coach in Raipur"
-                    decoding="async"
-                    fetchPriority="high"
-                    className="photo-in w-full h-full object-cover object-top"
-                  />
-                </div>
-                <div className="absolute -bottom-2 -right-2 bg-slate-900 text-amber-400 border border-slate-700 px-2.5 py-1 rounded-full text-[9px] font-bold tracking-widest uppercase flex items-center gap-1 shadow-lg">
-                  <Award size={11} className="text-amber-400 fill-amber-400/30" />
-                  <span>FSIA 2026</span>
-                </div>
-              </div>
-
-            </div>
-
-            {/* SOCIAL-PROOF STAT STRIP */}
-            <div className="relative z-10 mt-8 pt-6 border-t border-gray-100 grid grid-cols-2 md:grid-cols-4 gap-px bg-gray-100 rounded-2xl overflow-hidden border border-gray-100">
-              {[
-                { end: 500, suffix: '+', dec: 0, label: 'Clients Transformed', sub: 'Across Central India' },
-                { end: 18, suffix: 'kg', dec: 0, label: 'Personal Fat Loss', sub: 'Medicine-free journey' },
-                { end: 5.0, suffix: '★', dec: 1, label: 'Verified Rating', sub: '148 FSIA reviews' },
-                { end: 100, suffix: '%', dec: 0, label: 'Starvation-Free', sub: 'Food-first protocols' },
-              ].map((s, i) => (
-                <div
-                  key={s.label}
-                  className="stat-in p-4 sm:p-5 bg-gradient-to-b from-white to-slate-50/60 text-center sm:text-left"
-                  style={{ animationDelay: `${i * 90}ms` }}
+              <h1 className="font-sans font-extrabold tracking-tight leading-[1.05]">
+                <span className="block text-3xl sm:text-4xl md:text-5xl text-white word-reveal" style={{ animationDelay: '160ms' }}>Shweta</span>
+                <span
+                  className="block text-3xl sm:text-4xl md:text-5xl word-reveal bg-gradient-to-r from-emerald-300 via-teal-200 to-sky-300 bg-clip-text text-transparent"
+                  style={{ animationDelay: '300ms' }}
                 >
-                  <div className="text-2xl sm:text-3xl font-serif font-bold text-emerald-800 tracking-tight">
-                    <CountUp end={s.end} suffix={s.suffix} decimals={s.dec} />
-                  </div>
-                  <div className="text-[11px] font-bold text-gray-800 mt-1 uppercase tracking-wide">{s.label}</div>
-                  <div className="text-[10px] text-gray-400 mt-0.5 font-light">{s.sub}</div>
+                  Mishra
+                </span>
+              </h1>
+
+              <p className="stat-in text-sm sm:text-base font-semibold text-white" style={{ animationDelay: '440ms' }}>
+                Best Wellness Coach &amp; Registered Pharmacist
+              </p>
+
+              <p className="stat-in text-xs sm:text-sm text-slate-300 font-light leading-relaxed max-w-xs" style={{ animationDelay: '560ms' }}>
+                Helping women and families across Raipur achieve vibrant, medicine-free health.
+              </p>
+
+              <div className="stat-in pt-1" style={{ animationDelay: '680ms' }}>
+                <a
+                  id="btn-hero-primary-consult"
+                  href="#consultation"
+                  className="btn-sheen inline-flex items-center gap-2 px-5 sm:px-6 py-3 sm:py-3.5 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-white font-bold text-xs sm:text-sm rounded-full shadow-[0_10px_28px_-8px_rgba(16,185,129,0.6)] transition-all group"
+                >
+                  <span>Get Free Consultation</span>
+                  <ChevronRight size={16} className="group-hover:translate-x-0.5 transition-transform" />
+                </a>
+              </div>
+
+              {/* Social proof */}
+              <div className="stat-in flex items-center gap-3 pt-3" style={{ animationDelay: '820ms' }}>
+                <div className="flex -space-x-2.5">
+                  {['P', 'A', 'K'].map((n, i) => (
+                    <span
+                      key={n}
+                      className="stat-in w-8 h-8 rounded-full bg-gradient-to-br from-emerald-400 to-teal-500 text-white text-[11px] font-bold flex items-center justify-center ring-2 ring-slate-900"
+                      style={{ animationDelay: `${900 + i * 110}ms` }}
+                    >
+                      {n}
+                    </span>
+                  ))}
                 </div>
-              ))}
+                <div className="text-xs leading-tight">
+                  <strong className="block text-white font-bold"><CountUp end={500} suffix="+" /> Happy Clients</strong>
+                  <span className="text-slate-400">Across Raipur</span>
+                </div>
+              </div>
             </div>
-          </div>
+
+            <div className="absolute bottom-3 right-3 z-10 bg-slate-800/80 text-amber-300 border border-slate-600/60 px-2.5 py-1 rounded-full text-[9px] font-bold tracking-widest uppercase flex items-center gap-1 shadow-lg backdrop-blur-sm">
+              <Award size={11} className="text-amber-300 fill-amber-400/30" />
+              <span>FSIA 2026</span>
+            </div>
+            </div>
           </FadeInOnScroll>
 
           {/* SOLUTIONS FOR EVERY STAGE OF LIFE */}

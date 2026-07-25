@@ -1,22 +1,20 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 520" width="400" height="520" role="img" aria-label="Portrait placeholder">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 560" width="420" height="560" role="img" aria-label="Portrait placeholder">
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#eef2f0"/>
-      <stop offset="1" stop-color="#dfe7e2"/>
-    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="38%" r="55%">
+      <stop offset="0" stop-color="#34d399" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#34d399" stop-opacity="0"/>
+    </radialGradient>
     <linearGradient id="fig" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#7d8b73"/>
-      <stop offset="1" stop-color="#5d6c54"/>
+      <stop offset="0" stop-color="#e6f5ee"/>
+      <stop offset="1" stop-color="#a7d8c0"/>
     </linearGradient>
   </defs>
-  <rect width="400" height="520" fill="url(#bg)"/>
-  <!-- soft glow -->
-  <circle cx="200" cy="150" r="150" fill="#ffffff" opacity="0.35"/>
+  <!-- transparent background; soft glow blends into dark hero -->
+  <circle cx="210" cy="200" r="200" fill="url(#glow)"/>
   <!-- shoulders -->
-  <path d="M60 520 C60 400 120 340 200 340 C280 340 340 400 340 520 Z" fill="url(#fig)"/>
+  <path d="M70 560 C70 430 135 365 210 365 C285 365 350 430 350 560 Z" fill="url(#fig)" opacity="0.92"/>
   <!-- head -->
-  <circle cx="200" cy="210" r="78" fill="url(#fig)"/>
-  <!-- highlight -->
-  <circle cx="176" cy="188" r="22" fill="#ffffff" opacity="0.12"/>
-  <text x="200" y="500" font-family="Georgia, serif" font-size="15" fill="#5d6c54" text-anchor="middle" opacity="0.7">Photo Placeholder</text>
+  <circle cx="210" cy="222" r="82" fill="url(#fig)" opacity="0.95"/>
+  <!-- soft highlight -->
+  <circle cx="184" cy="198" r="24" fill="#ffffff" opacity="0.25"/>
 </svg>
