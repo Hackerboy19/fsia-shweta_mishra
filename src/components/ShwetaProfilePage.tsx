@@ -413,16 +413,14 @@ function SectionHead({
   subtitle?: string;
 }) {
   return (
-    <div className="pb-5 border-b border-gray-100">
-      <span className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-[0.16em] text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-100">
-        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-        {eyebrow}
-      </span>
-      <h2 id={id} className="text-xl sm:text-2xl font-serif font-bold text-gray-900 mt-2.5 tracking-tight">
+    <div className="mb-1">
+      <h2 id={id} className="text-xl sm:text-2xl font-serif font-bold text-gray-900 tracking-tight">
         {title}
       </h2>
+      {/* short accent underline, mockup-style */}
+      <span className="block mt-2 h-1 w-12 rounded-full bg-gradient-to-r from-emerald-600 to-emerald-400" />
       {subtitle && (
-        <p className="text-xs sm:text-sm text-gray-500 mt-1.5 font-light max-w-2xl leading-relaxed">{subtitle}</p>
+        <p className="text-xs sm:text-sm text-gray-500 mt-3 font-light max-w-2xl leading-relaxed">{subtitle}</p>
       )}
     </div>
   );
@@ -525,6 +523,14 @@ function Testimonials() {
 
 export default function ShwetaProfilePage() {
   const [activeTab, setActiveTab] = useState<'bio' | 'expertise' | 'awards' | 'reviews'>('bio');
+  const [menuOpen, setMenuOpen] = useState(false);
+  const menu = [
+    { label: 'Programs', href: '#solutions' },
+    { label: 'About', href: '#about' },
+    { label: 'Reviews', href: '#reviews' },
+    { label: 'FAQ', href: '#faq' },
+    { label: 'Contact', href: '#consultation' },
+  ];
 
   const whatsappMessage = encodeURIComponent(
     'Hello Shweta Mishra! I visited your official FSIA directory profile (Best Wellness Coach in Raipur) and would like to schedule a consultation.'
@@ -771,6 +777,61 @@ export default function ShwetaProfilePage() {
         }}
       />
 
+      {/* APP-STYLE STICKY HEADER (logo + menu) */}
+      <header className="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-gray-200/70">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
+          <a href="#top" className="flex items-center gap-2">
+            <span className="w-8 h-8 rounded-lg bg-gradient-to-br from-emerald-600 to-emerald-800 text-white grid place-items-center shadow-sm">
+              <Heart size={16} className="fill-white/30" />
+            </span>
+            <span className="font-serif font-bold text-gray-900 leading-none">
+              Shweta Mishra
+              <span className="block text-[9px] font-sans font-semibold uppercase tracking-[0.16em] text-emerald-700/70 mt-0.5">Wellness &amp; Pharmacy</span>
+            </span>
+          </a>
+
+          {/* desktop nav */}
+          <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-gray-600">
+            {menu.map((m) => (
+              <a key={m.label} href={m.href} className="hover:text-emerald-800 transition-colors">{m.label}</a>
+            ))}
+            <a href="#consultation" className="px-4 py-2 rounded-lg bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold uppercase tracking-wider transition-colors">Book</a>
+          </nav>
+
+          {/* mobile hamburger */}
+          <button
+            onClick={() => setMenuOpen((v) => !v)}
+            aria-label="Menu"
+            aria-expanded={menuOpen}
+            className="md:hidden w-10 h-10 grid place-items-center rounded-lg border border-gray-200 text-gray-700"
+          >
+            <div className="space-y-1">
+              <span className={`block h-0.5 w-5 bg-current transition-transform ${menuOpen ? 'translate-y-1.5 rotate-45' : ''}`} />
+              <span className={`block h-0.5 w-5 bg-current transition-opacity ${menuOpen ? 'opacity-0' : ''}`} />
+              <span className={`block h-0.5 w-5 bg-current transition-transform ${menuOpen ? '-translate-y-1.5 -rotate-45' : ''}`} />
+            </div>
+          </button>
+        </div>
+
+        {/* mobile dropdown */}
+        <div className={`md:hidden overflow-hidden transition-[max-height] duration-300 ${menuOpen ? 'max-h-72' : 'max-h-0'}`}>
+          <nav className="px-4 pb-3 pt-1 space-y-1 bg-white border-t border-gray-100">
+            {menu.map((m) => (
+              <a
+                key={m.label}
+                href={m.href}
+                onClick={() => setMenuOpen(false)}
+                className="block px-3 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-emerald-50 hover:text-emerald-800"
+              >
+                {m.label}
+              </a>
+            ))}
+          </nav>
+        </div>
+      </header>
+
+      <span id="top" />
+
       {/* Directory Platform Sub-Header Banner */}
       <div className="bg-gradient-to-r from-slate-950 via-slate-900 to-emerald-950 text-slate-300 py-2.5 px-4 text-xs border-b border-slate-800/80">
         <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
@@ -833,7 +894,7 @@ export default function ShwetaProfilePage() {
 
           {/* PROFILE HERO CARD */}
           <FadeInOnScroll>
-            <div className="bg-white/90 backdrop-blur-sm rounded-3xl border border-gray-200/70 shadow-card p-6 sm:p-8 relative overflow-hidden">
+            <div className="bg-gradient-to-br from-emerald-50 via-white to-emerald-50/50 rounded-3xl border border-emerald-100/70 shadow-card p-6 sm:p-8 relative overflow-hidden">
             {/* Background Accent Gradients */}
             <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-amber-200/30 via-emerald-100/20 to-transparent rounded-full blur-3xl pointer-events-none" />
             <div className="absolute -bottom-24 -left-16 w-80 h-80 bg-gradient-to-tr from-emerald-100/40 to-transparent rounded-full blur-3xl pointer-events-none" />
@@ -907,7 +968,7 @@ export default function ShwetaProfilePage() {
 
               {/* Photo Column */}
               <div className="shrink-0 relative animate-floaty">
-                <div className="w-28 h-36 sm:w-44 sm:h-56 md:w-56 md:h-72 rounded-2xl overflow-hidden border-4 border-white shadow-xl shadow-emerald-900/10 bg-gradient-to-b from-emerald-50 via-emerald-100/50 to-white">
+                <div className="w-32 h-44 sm:w-52 sm:h-64 md:w-64 md:h-80 rounded-2xl overflow-hidden ring-1 ring-emerald-100 shadow-2xl shadow-emerald-900/15 bg-gradient-to-b from-emerald-100/60 via-emerald-50 to-white">
                   <img
                     src="/shweta-mishra.png"
                     alt="Shweta Mishra - Best Wellness Coach in Raipur"
@@ -988,12 +1049,14 @@ export default function ShwetaProfilePage() {
               <p className="text-xs sm:text-sm text-gray-600 font-light leading-relaxed max-w-2xl">
                 I&rsquo;m <strong className="font-semibold text-gray-900">Shweta Mishra</strong>, a registered pharmacist (B.Pharm) with an M.Sc. in Mathematics, dedicated to helping women and families across Raipur achieve vibrant, medicine-free health. After my own 18kg transformation, I built a starvation-free, pharmacologically-safe method that heals the cell and restores circadian rhythm.
               </p>
-              <div className="grid grid-cols-3 gap-3 sm:gap-4">
+              <div className="grid grid-cols-3 gap-3 sm:gap-6 pt-1">
                 {[{ Icon: Award, big: 18, suf: 'kg', label: 'Personal Fat Loss' }, { Icon: UserCheck, big: 500, suf: '+', label: 'Clients Helped' }, { Icon: ShieldCheck, big: 100, suf: '%', label: 'Medicine-Free' }].map((s) => (
-                  <div key={s.label} className="text-center p-4 rounded-2xl bg-gradient-to-b from-emerald-50/60 to-white border border-emerald-100/70">
-                    <s.Icon size={20} className="text-emerald-600 mx-auto mb-1.5" />
-                    <div className="text-2xl sm:text-3xl font-serif font-bold text-emerald-800"><CountUp end={s.big} suffix={s.suf} /></div>
-                    <div className="text-[10px] sm:text-[11px] font-semibold text-gray-600 uppercase tracking-wide mt-0.5">{s.label}</div>
+                  <div key={s.label} className="text-center">
+                    <span className="mx-auto mb-2 grid place-items-center w-12 h-12 rounded-full border border-emerald-200 text-emerald-600">
+                      <s.Icon size={22} />
+                    </span>
+                    <div className="text-2xl sm:text-3xl font-serif font-bold text-gray-900"><CountUp end={s.big} suffix={s.suf} /></div>
+                    <div className="text-[10px] sm:text-xs text-gray-500 mt-0.5 leading-tight">{s.label}</div>
                   </div>
                 ))}
               </div>
