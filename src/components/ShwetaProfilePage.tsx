@@ -894,7 +894,7 @@ export default function ShwetaProfilePage() {
 
           {/* PROFILE HERO CARD */}
           <FadeInOnScroll>
-            <div className="bg-gradient-to-br from-emerald-50 via-white to-emerald-50/50 rounded-3xl border border-emerald-100/70 shadow-card p-6 sm:p-8 relative overflow-hidden">
+            <div className="bg-gradient-to-br from-white via-[#faf9f6] to-white rounded-3xl border border-gray-200/70 shadow-card p-6 sm:p-8 relative overflow-hidden">
             {/* Background Accent Gradients */}
             <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-amber-200/30 via-emerald-100/20 to-transparent rounded-full blur-3xl pointer-events-none" />
             <div className="absolute -bottom-24 -left-16 w-80 h-80 bg-gradient-to-tr from-emerald-100/40 to-transparent rounded-full blur-3xl pointer-events-none" />
@@ -970,7 +970,7 @@ export default function ShwetaProfilePage() {
               <div className="shrink-0 relative animate-floaty">
                 <div className="w-32 h-44 sm:w-52 sm:h-64 md:w-64 md:h-80 rounded-2xl overflow-hidden ring-1 ring-emerald-100 shadow-2xl shadow-emerald-900/15 bg-gradient-to-b from-emerald-100/60 via-emerald-50 to-white">
                   <img
-                    src="/shweta-mishra.png"
+                    src="/dummy-portrait.svg"
                     alt="Shweta Mishra - Best Wellness Coach in Raipur"
                     decoding="async"
                     fetchPriority="high"

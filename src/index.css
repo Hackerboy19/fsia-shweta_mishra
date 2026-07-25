@@ -26,7 +26,7 @@
   --color-gold-600: #9c6e1b;
   --color-gold-700: #7f5217;
 
-  --color-cream-main: #faf8f3;
+  --color-cream-main: #f6f5f1;
   --color-charcoal-main: #253536;
 
   /* Layered premium shadows */
@@ -43,13 +43,10 @@ html {
 }
 
 body {
-  /* Warm, layered ambient background instead of flat cream.
-     No background-attachment:fixed — it forces full-page repaints on every
-     scroll frame (jank). A plain scrolling gradient composites cheaply. */
+  /* Clean light off-white — barely-there emerald tint, no warm/gold cast. */
   background-color: var(--color-cream-main);
   background-image:
-    radial-gradient(1100px 520px at 78% -8%, rgba(212,175,55,0.10), transparent 60%),
-    radial-gradient(900px 500px at -6% 8%, rgba(6,78,59,0.06), transparent 55%);
+    radial-gradient(1000px 480px at 82% -10%, rgba(6,78,59,0.035), transparent 60%);
   color: var(--color-charcoal-main);
   -webkit-font-smoothing: antialiased;
 }
