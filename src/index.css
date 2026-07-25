@@ -212,10 +212,31 @@ section[id] { scroll-margin-top: 84px; }
   animation: livePing 1.8s ease-out infinite;
 }
 
+/* Twinkling gold sparkle accent */
+@keyframes twinkle {
+  0%, 100% { opacity: 0; transform: scale(0.4) rotate(0deg); }
+  50% { opacity: 0.9; transform: scale(1) rotate(90deg); }
+}
+.sparkle {
+  position: absolute;
+  pointer-events: none;
+  color: #d4af37;
+  filter: drop-shadow(0 0 3px rgba(212,175,55,0.6));
+  animation: twinkle 3.4s ease-in-out infinite;
+}
+
+/* Soft photo entrance */
+@keyframes photoIn {
+  from { opacity: 0; transform: scale(1.06); }
+  to { opacity: 1; transform: scale(1); }
+}
+.photo-in { animation: photoIn 1s cubic-bezier(.22,.61,.36,1) both; }
+
 @media (prefers-reduced-motion: reduce) {
   .animate-bar, .animate-floaty, .btn-sheen::after, .glow-pulse, .stat-in,
-  .animate-heartbeat, .ecg-path, .ecg-blip, .word-reveal, .live-dot::before { animation: none; }
-  .word-reveal { opacity: 1; }
+  .animate-heartbeat, .ecg-path, .ecg-blip, .word-reveal, .live-dot::before,
+  .sparkle, .photo-in { animation: none; }
+  .word-reveal, .stat-in { opacity: 1; }
   .stagger > * { opacity: 1; transform: none; transition: none; }
   html { scroll-behavior: auto; }
 }
