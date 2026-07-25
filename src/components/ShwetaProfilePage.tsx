@@ -901,11 +901,11 @@ export default function ShwetaProfilePage() {
 
             {/* edge-bleed portrait, anchored bottom-right */}
             <img
-              src="/dummy-portrait.svg"
+              src="/shweta-mishra.png"
               alt="Shweta Mishra - Best Wellness Coach in Raipur"
               decoding="async"
               fetchPriority="high"
-              className="photo-in absolute bottom-0 right-0 h-[78%] sm:h-[92%] w-auto object-contain object-bottom pointer-events-none select-none"
+              className="photo-in absolute bottom-0 right-0 h-[82%] sm:h-[96%] w-auto object-contain object-bottom pointer-events-none select-none drop-shadow-2xl"
             />
             {/* left-to-right scrim so text stays readable over the photo */}
             <div className="absolute inset-0 bg-gradient-to-r from-slate-900 via-slate-900/85 to-transparent" />
