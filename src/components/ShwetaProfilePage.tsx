@@ -525,15 +525,15 @@ const SOLUTIONS = [
 
 // All FSIA awardees (real names from fsia.in — photos are placeholders, swap when available)
 const AWARDEES = [
-  { name: 'Shweta Mishra', handle: '@shwetamishra', award: 'Super Woman 2026', cat: 'Wellness', year: '2026', region: 'Raipur, India', img: '/shweta-mishra.png', href: '#/', quote: 'True wellness is built with science, patience and compassion — never starvation.', bio: 'Registered pharmacist and holistic wellness coach who reversed her own health with an 18kg transformation, now guiding 500+ families across Central India to medicine-free living.' },
-  { name: 'Nidhi Mor', handle: '@nidhimor', award: 'Mrs Haryana', cat: 'Mrs India', year: '2025', region: 'Haryana, India', img: '/gallery-1.svg', quote: 'Strength, elegance and ambition — inspiring women to grow with confidence.', bio: 'An M.Sc. postgraduate turned model and actress, crowned Mrs Haryana at Forever Mrs India 2025 and a grand finalist on the national stage.' },
-  { name: 'Neeharika Bethanapalli', handle: '@neeharika', award: 'Miss India', cat: 'Miss India', year: '2025', region: 'India', img: '/gallery-2.svg', quote: 'Grace on the ramp begins with purpose off it.', bio: 'Crowned Miss India 2025 at Forever Star India, recognised for poise, presence and community contribution.' },
-  { name: 'Bhumika Songara', handle: '@bhumika', award: 'Mrs India', cat: 'Mrs India', year: '2025', region: 'India', img: '/gallery-3.svg', quote: 'Every woman deserves a stage to shine.', bio: 'Forever Mrs India 2025 titleholder, celebrated for elegance and advocacy for women empowerment.' },
-  { name: 'Anjali Sinha', handle: '@anjalisinha', award: 'Mrs India', cat: 'Mrs India', year: '2025', region: 'India', img: '/gallery-4.svg', quote: 'Confidence is the finest couture.', bio: 'Forever Mrs India 2025 winner, honoured for her poise and positive community impact.' },
-  { name: 'Tanvi Yatin Khairnar', handle: '@tanvi', award: 'Miss Teen India', cat: 'Miss Teen', year: '2025', region: 'India', img: '/gallery-1.svg', quote: 'Dream young, dream bold.', bio: 'Miss Teen India 2025, an emerging young talent recognised for confidence and creative expression.' },
-  { name: 'Dr Srujana Devi', handle: '@srujana', award: 'Forever Universe India', cat: 'Universe', year: '2025', region: 'India', img: '/gallery-2.svg', quote: 'Knowledge and beauty walk together.', bio: 'Miss Forever Universe India 2025 — a doctor and titleholder blending intellect with grace.' },
-  { name: 'Saartha Sameer Gore', handle: '@saartha', award: 'Forever Universe', cat: 'Universe', year: '2025', region: 'India', img: '/gallery-3.svg', quote: 'The universe rewards those who dare.', bio: 'Miss Forever Universe 2025 winner, celebrated on the international pageant stage.' },
-  { name: 'Gloria Kotwal', handle: '@gloria', award: 'Miss Teen Universe', cat: 'Miss Teen', year: '2025', region: 'India', img: '/gallery-4.svg', quote: 'Youth is the boldest stage of all.', bio: 'Miss Teen Universe 2025 — a young achiever recognised for talent, poise and potential.' },
+  { name: 'Shweta Mishra', handle: '@shwetamishra', award: 'Super Woman', cat: 'Wellness', year: '2026', region: 'Raipur, India', photos: ['/shweta-mishra.png', '/gallery-1.svg', '/gallery-2.svg'], href: '#/', quote: 'True wellness is built with science, patience and compassion — never starvation.', bio: 'Registered pharmacist and holistic wellness coach who reversed her own health with an 18kg transformation, now guiding 500+ families across Central India to medicine-free living.' },
+  { name: 'Nidhi Mor', handle: '@nidhimor', award: 'Mrs Haryana', cat: 'Mrs India', year: '2025', region: 'Haryana, India', photos: ['/gallery-1.svg', '/gallery-3.svg', '/gallery-4.svg'], quote: 'Strength, elegance and ambition — inspiring women to grow with confidence.', bio: 'An M.Sc. postgraduate turned model and actress, crowned Mrs Haryana at Forever Mrs India 2025 and a grand finalist on the national stage.' },
+  { name: 'Neeharika Bethanapalli', handle: '@neeharika', award: 'Miss India', cat: 'Miss India', year: '2025', region: 'India', photos: ['/gallery-2.svg', '/gallery-4.svg', '/gallery-1.svg'], quote: 'Grace on the ramp begins with purpose off it.', bio: 'Crowned Miss India 2025 at Forever Star India, recognised for poise, presence and community contribution.' },
+  { name: 'Bhumika Songara', handle: '@bhumika', award: 'Mrs India', cat: 'Mrs India', year: '2025', region: 'India', photos: ['/gallery-3.svg', '/gallery-1.svg', '/gallery-2.svg'], quote: 'Every woman deserves a stage to shine.', bio: 'Forever Mrs India 2025 titleholder, celebrated for elegance and advocacy for women empowerment.' },
+  { name: 'Anjali Sinha', handle: '@anjalisinha', award: 'Mrs India', cat: 'Mrs India', year: '2025', region: 'India', photos: ['/gallery-4.svg', '/gallery-2.svg', '/gallery-3.svg'], quote: 'Confidence is the finest couture.', bio: 'Forever Mrs India 2025 winner, honoured for her poise and positive community impact.' },
+  { name: 'Tanvi Yatin Khairnar', handle: '@tanvi', award: 'Miss Teen India', cat: 'Miss Teen', year: '2025', region: 'India', photos: ['/gallery-1.svg', '/gallery-4.svg', '/gallery-3.svg'], quote: 'Dream young, dream bold.', bio: 'Miss Teen India 2025, an emerging young talent recognised for confidence and creative expression.' },
+  { name: 'Dr Srujana Devi', handle: '@srujana', award: 'Forever Universe India', cat: 'Universe', year: '2025', region: 'India', photos: ['/gallery-2.svg', '/gallery-3.svg', '/gallery-1.svg'], quote: 'Knowledge and beauty walk together.', bio: 'Miss Forever Universe India 2025 — a doctor and titleholder blending intellect with grace.' },
+  { name: 'Saartha Sameer Gore', handle: '@saartha', award: 'Forever Universe', cat: 'Universe', year: '2025', region: 'India', photos: ['/gallery-3.svg', '/gallery-2.svg', '/gallery-4.svg'], quote: 'The universe rewards those who dare.', bio: 'Miss Forever Universe 2025 winner, celebrated on the international pageant stage.' },
+  { name: 'Gloria Kotwal', handle: '@gloria', award: 'Miss Teen Universe', cat: 'Miss Teen', year: '2025', region: 'India', photos: ['/gallery-4.svg', '/gallery-1.svg', '/gallery-2.svg'], quote: 'Youth is the boldest stage of all.', bio: 'Miss Teen Universe 2025 — a young achiever recognised for talent, poise and potential.' },
 ];
 const AW_CATS = ['All', 'Wellness', 'Miss India', 'Mrs India', 'Miss Teen', 'Universe'];
 
@@ -610,6 +610,7 @@ export default function ShwetaProfilePage() {
   const [awFilter, setAwFilter] = useState('All');
   const [awSearch, setAwSearch] = useState('');
   const [awProfile, setAwProfile] = useState<string | null>(null);
+  const [awPhoto, setAwPhoto] = useState(0);
   const [lightbox, setLightbox] = useState<number | null>(null);
   const menu = [
     { label: 'Programs', href: '#solutions' },
@@ -1318,11 +1319,14 @@ export default function ShwetaProfilePage() {
                 {/* grid */}
                 <div className="p-4 sm:p-6 grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
                   {list.map((a) => (
-                    <button key={a.name} onClick={() => setAwProfile(a.name)} className="group relative aspect-[3/4] rounded-2xl overflow-hidden border border-gray-200 bg-slate-100 shadow-soft text-left">
-                      <img src={a.img} alt={a.name} className="absolute inset-0 w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" />
+                    <button key={a.name} onClick={() => { setAwProfile(a.name); setAwPhoto(0); }} className="group relative aspect-[3/4] rounded-2xl overflow-hidden border border-gray-200 bg-slate-100 shadow-soft text-left">
+                      <img src={a.photos[0]} alt={a.name} className="absolute inset-0 w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" />
                       <div className="absolute inset-0 bg-gradient-to-t from-black via-black/35 to-transparent" />
                       <span className="absolute top-2.5 left-2.5 inline-flex items-center gap-1 text-[9px] font-bold uppercase tracking-wider text-amber-300 bg-black/50 border border-amber-400/30 px-2 py-0.5 rounded-full backdrop-blur-sm">
                         <ShieldCheck size={10} /> FSIA Verified
+                      </span>
+                      <span className="absolute top-2.5 right-2.5 inline-flex items-center gap-1 text-[9px] font-bold text-white bg-black/50 border border-white/20 px-1.5 py-0.5 rounded-full backdrop-blur-sm">
+                        <BookOpen size={9} /> {a.photos.length}
                       </span>
                       <div className="absolute inset-x-0 bottom-0 p-3">
                         <strong className="block font-serif font-bold text-sm text-white leading-tight">{a.name}</strong>
@@ -1358,13 +1362,27 @@ export default function ShwetaProfilePage() {
                   <span className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-[0.16em] text-emerald-800"><ShieldCheck size={12} /> Verified FSIA Profile</span>
                   <button onClick={() => setAwProfile(null)} aria-label="Close" className="w-8 h-8 grid place-items-center rounded-full bg-gray-100 text-gray-500 hover:bg-gray-200">✕</button>
                 </div>
-                {/* portrait strip */}
-                <div className="relative h-40 sm:h-52 overflow-hidden bg-slate-100">
-                  <img src={a.img} alt={a.name} className="w-full h-full object-cover object-top" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#faf9f6] via-transparent to-transparent" />
+                {/* photo carousel */}
+                <div className="relative h-52 sm:h-64 overflow-hidden bg-slate-100">
+                  <img src={a.photos[awPhoto] ?? a.photos[0]} alt={a.name} className="w-full h-full object-cover object-top transition-opacity duration-300" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#faf9f6] via-transparent to-transparent pointer-events-none" />
+                  {a.photos.length > 1 && (
+                    <>
+                      <button aria-label="Previous photo" onClick={() => setAwPhoto((p) => (p - 1 + a.photos.length) % a.photos.length)} className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 grid place-items-center rounded-full bg-white/80 text-gray-700 shadow rotate-180"><ChevronRight size={16} /></button>
+                      <button aria-label="Next photo" onClick={() => setAwPhoto((p) => (p + 1) % a.photos.length)} className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 grid place-items-center rounded-full bg-white/80 text-gray-700 shadow"><ChevronRight size={16} /></button>
+                      {/* thumbnails */}
+                      <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5">
+                        {a.photos.map((p, i) => (
+                          <button key={i} aria-label={`Photo ${i + 1}`} onClick={() => setAwPhoto(i)} className={`w-9 h-9 rounded-lg overflow-hidden border-2 ${i === awPhoto ? 'border-amber-400' : 'border-white/70'}`}>
+                            <img src={p} alt="" className="w-full h-full object-cover object-top" />
+                          </button>
+                        ))}
+                      </div>
+                    </>
+                  )}
                 </div>
                 {/* body */}
-                <div className="px-6 sm:px-8 pb-6 -mt-6 relative">
+                <div className="px-6 sm:px-8 pb-6 pt-5 relative">
                   <span className="inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-gray-500"><MapPin size={12} className="text-emerald-600" /> {a.region}</span>
                   <h2 className="mt-1.5 font-serif font-bold text-3xl sm:text-4xl tracking-tight leading-none">{a.name}</h2>
                   <p className="mt-2 font-serif italic text-sm text-amber-700">Winner, {a.award} {a.year}</p>
