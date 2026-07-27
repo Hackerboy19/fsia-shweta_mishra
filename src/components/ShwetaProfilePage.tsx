@@ -475,6 +475,15 @@ const SOLUTIONS = [
   { Icon: BookOpen, title: 'Preventive Health', tone: 'bg-sky-100 text-sky-700', desc: 'Simple daily habits to prevent illness and stay vibrant and medicine-free for the long run.' },
 ];
 
+// Gallery images (real photo + dummy placeholders — replace with real shots)
+const GALLERY = [
+  { src: '/shweta-mishra.png', label: 'Portrait' },
+  { src: '/gallery-1.svg', label: 'Wellness Session' },
+  { src: '/gallery-2.svg', label: 'Consultation' },
+  { src: '/gallery-3.svg', label: 'Nutrition Plan' },
+  { src: '/gallery-4.svg', label: 'Lifestyle Coaching' },
+];
+
 // FSIA team members (placeholder — replace with real names/roles)
 const TEAM = [
   { name: 'Forever Star India Awards', role: 'National Awards & Directory Body', initials: 'FS' },
@@ -535,6 +544,7 @@ export default function ShwetaProfilePage() {
   const [contactOpen, setContactOpen] = useState(false);
   const [teamOpen, setTeamOpen] = useState(false);
   const [galleryOpen, setGalleryOpen] = useState(false);
+  const [lightbox, setLightbox] = useState<number | null>(null);
   const menu = [
     { label: 'Programs', href: '#solutions' },
     { label: 'About', href: '#about' },
@@ -878,7 +888,7 @@ export default function ShwetaProfilePage() {
         <nav aria-label="breadcrumb" className="py-3 text-xs text-gray-500 font-sans">
           <ol className="flex items-center gap-2 flex-wrap">
             <li>
-              <a href="https://fsia.in/nominate" target="_blank" rel="noopener noreferrer" className="hover:text-emerald-700 transition-colors">
+              <a href="#/nominate" className="hover:text-emerald-700 transition-colors">
                 Home
               </a>
             </li>
@@ -1165,18 +1175,34 @@ export default function ShwetaProfilePage() {
         </div>
       )}
 
-      {/* GALLERY MODAL (profile photo) */}
+      {/* GALLERY MODAL (photo grid + lightbox) */}
       {galleryOpen && (
-        <div className="fixed inset-0 z-[70] flex items-center justify-center p-4" role="dialog" aria-modal="true">
-          <div className="absolute inset-0 bg-slate-950/70 backdrop-blur-sm" onClick={() => setGalleryOpen(false)} />
-          <div className="relative w-full max-w-xs">
-            <button onClick={() => setGalleryOpen(false)} aria-label="Close" className="absolute -top-10 right-0 w-9 h-9 grid place-items-center rounded-full bg-white/90 text-gray-700">✕</button>
-            <div className="rounded-3xl overflow-hidden border-4 border-white shadow-lift bg-emerald-950">
-              <img src="/shweta-mishra.png" alt="Shweta Mishra" className="w-full h-auto object-cover" />
+        <div className="fixed inset-0 z-[70] flex items-end sm:items-center justify-center" role="dialog" aria-modal="true">
+          <div className="absolute inset-0 bg-slate-950/60 backdrop-blur-sm" onClick={() => { setGalleryOpen(false); setLightbox(null); }} />
+          <div className="relative w-full sm:max-w-lg bg-white rounded-t-3xl sm:rounded-3xl p-6 shadow-lift max-h-[85vh] overflow-y-auto">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="font-serif font-bold text-lg text-gray-900">Gallery — Shweta Mishra</h3>
+              <button onClick={() => setGalleryOpen(false)} aria-label="Close" className="w-8 h-8 grid place-items-center rounded-full bg-gray-100 text-gray-500">✕</button>
             </div>
-            <p className="text-center text-white text-sm font-semibold mt-3">Shweta Mishra</p>
-            <p className="text-center text-slate-300 text-xs">Best Wellness Coach in Raipur</p>
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
+              {GALLERY.map((g, i) => (
+                <button key={i} onClick={() => setLightbox(i)} className="group relative aspect-square rounded-2xl overflow-hidden border border-gray-100 bg-slate-100">
+                  <img src={g.src} alt={g.label} className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform" />
+                  <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-900/70 to-transparent text-white text-[10px] font-medium p-1.5 text-left">{g.label}</span>
+                </button>
+              ))}
+            </div>
           </div>
+          {/* lightbox */}
+          {lightbox !== null && (
+            <div className="absolute inset-0 z-[80] flex items-center justify-center p-4 bg-slate-950/80" onClick={() => setLightbox(null)}>
+              <div className="relative max-w-xs w-full" onClick={(e) => e.stopPropagation()}>
+                <button onClick={() => setLightbox(null)} aria-label="Close" className="absolute -top-10 right-0 w-9 h-9 grid place-items-center rounded-full bg-white/90 text-gray-700">✕</button>
+                <img src={GALLERY[lightbox].src} alt={GALLERY[lightbox].label} className="w-full h-auto rounded-2xl border-4 border-white shadow-lift" />
+                <p className="text-center text-white text-sm font-semibold mt-3">{GALLERY[lightbox].label}</p>
+              </div>
+            </div>
+          )}
         </div>
       )}
     </div>
