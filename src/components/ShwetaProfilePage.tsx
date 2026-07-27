@@ -525,15 +525,15 @@ const SOLUTIONS = [
 
 // All FSIA awardees (real names from fsia.in — photos are placeholders, swap when available)
 const AWARDEES = [
-  { name: 'Shweta Mishra', handle: '@shwetamishra', award: 'Super Woman 2026', cat: 'Wellness', year: '2026', region: 'Raipur', img: '/shweta-mishra.png', href: '#/' },
-  { name: 'Nidhi Mor', handle: '@nidhimor', award: 'Mrs Haryana', cat: 'Mrs India', year: '2025', region: 'Haryana', img: '/gallery-1.svg' },
-  { name: 'Neeharika Bethanapalli', handle: '@neeharika', award: 'Miss India', cat: 'Miss India', year: '2025', region: 'India', img: '/gallery-2.svg' },
-  { name: 'Bhumika Songara', handle: '@bhumika', award: 'Mrs India', cat: 'Mrs India', year: '2025', region: 'India', img: '/gallery-3.svg' },
-  { name: 'Anjali Sinha', handle: '@anjalisinha', award: 'Mrs India', cat: 'Mrs India', year: '2025', region: 'India', img: '/gallery-4.svg' },
-  { name: 'Tanvi Yatin Khairnar', handle: '@tanvi', award: 'Miss Teen India', cat: 'Miss Teen', year: '2025', region: 'India', img: '/gallery-1.svg' },
-  { name: 'Dr Srujana Devi', handle: '@srujana', award: 'Forever Universe India', cat: 'Universe', year: '2025', region: 'India', img: '/gallery-2.svg' },
-  { name: 'Saartha Sameer Gore', handle: '@saartha', award: 'Forever Universe', cat: 'Universe', year: '2025', region: 'India', img: '/gallery-3.svg' },
-  { name: 'Gloria Kotwal', handle: '@gloria', award: 'Miss Teen Universe', cat: 'Miss Teen', year: '2025', region: 'India', img: '/gallery-4.svg' },
+  { name: 'Shweta Mishra', handle: '@shwetamishra', award: 'Super Woman 2026', cat: 'Wellness', year: '2026', region: 'Raipur, India', img: '/shweta-mishra.png', href: '#/', quote: 'True wellness is built with science, patience and compassion — never starvation.', bio: 'Registered pharmacist and holistic wellness coach who reversed her own health with an 18kg transformation, now guiding 500+ families across Central India to medicine-free living.' },
+  { name: 'Nidhi Mor', handle: '@nidhimor', award: 'Mrs Haryana', cat: 'Mrs India', year: '2025', region: 'Haryana, India', img: '/gallery-1.svg', quote: 'Strength, elegance and ambition — inspiring women to grow with confidence.', bio: 'An M.Sc. postgraduate turned model and actress, crowned Mrs Haryana at Forever Mrs India 2025 and a grand finalist on the national stage.' },
+  { name: 'Neeharika Bethanapalli', handle: '@neeharika', award: 'Miss India', cat: 'Miss India', year: '2025', region: 'India', img: '/gallery-2.svg', quote: 'Grace on the ramp begins with purpose off it.', bio: 'Crowned Miss India 2025 at Forever Star India, recognised for poise, presence and community contribution.' },
+  { name: 'Bhumika Songara', handle: '@bhumika', award: 'Mrs India', cat: 'Mrs India', year: '2025', region: 'India', img: '/gallery-3.svg', quote: 'Every woman deserves a stage to shine.', bio: 'Forever Mrs India 2025 titleholder, celebrated for elegance and advocacy for women empowerment.' },
+  { name: 'Anjali Sinha', handle: '@anjalisinha', award: 'Mrs India', cat: 'Mrs India', year: '2025', region: 'India', img: '/gallery-4.svg', quote: 'Confidence is the finest couture.', bio: 'Forever Mrs India 2025 winner, honoured for her poise and positive community impact.' },
+  { name: 'Tanvi Yatin Khairnar', handle: '@tanvi', award: 'Miss Teen India', cat: 'Miss Teen', year: '2025', region: 'India', img: '/gallery-1.svg', quote: 'Dream young, dream bold.', bio: 'Miss Teen India 2025, an emerging young talent recognised for confidence and creative expression.' },
+  { name: 'Dr Srujana Devi', handle: '@srujana', award: 'Forever Universe India', cat: 'Universe', year: '2025', region: 'India', img: '/gallery-2.svg', quote: 'Knowledge and beauty walk together.', bio: 'Miss Forever Universe India 2025 — a doctor and titleholder blending intellect with grace.' },
+  { name: 'Saartha Sameer Gore', handle: '@saartha', award: 'Forever Universe', cat: 'Universe', year: '2025', region: 'India', img: '/gallery-3.svg', quote: 'The universe rewards those who dare.', bio: 'Miss Forever Universe 2025 winner, celebrated on the international pageant stage.' },
+  { name: 'Gloria Kotwal', handle: '@gloria', award: 'Miss Teen Universe', cat: 'Miss Teen', year: '2025', region: 'India', img: '/gallery-4.svg', quote: 'Youth is the boldest stage of all.', bio: 'Miss Teen Universe 2025 — a young achiever recognised for talent, poise and potential.' },
 ];
 const AW_CATS = ['All', 'Wellness', 'Miss India', 'Mrs India', 'Miss Teen', 'Universe'];
 
@@ -609,6 +609,7 @@ export default function ShwetaProfilePage() {
   const [awardeesOpen, setAwardeesOpen] = useState(false);
   const [awFilter, setAwFilter] = useState('All');
   const [awSearch, setAwSearch] = useState('');
+  const [awProfile, setAwProfile] = useState<string | null>(null);
   const [lightbox, setLightbox] = useState<number | null>(null);
   const menu = [
     { label: 'Programs', href: '#solutions' },
@@ -1285,61 +1286,117 @@ export default function ShwetaProfilePage() {
           (a.name.toLowerCase().includes(awSearch.toLowerCase()) || a.award.toLowerCase().includes(awSearch.toLowerCase()))
         );
         return (
-          <div className="fixed inset-0 z-[70] overflow-y-auto bg-slate-950/80 backdrop-blur-sm" role="dialog" aria-modal="true" onClick={() => setAwardeesOpen(false)}>
+          <div className="fixed inset-0 z-[70] overflow-y-auto bg-slate-950/40 backdrop-blur-sm" role="dialog" aria-modal="true" onClick={() => setAwardeesOpen(false)}>
             <div className="min-h-full flex items-start justify-center sm:p-6">
-              <div className="w-full sm:max-w-4xl bg-[#0b0f14] text-white sm:rounded-3xl overflow-hidden shadow-lift border border-slate-800" onClick={(e) => e.stopPropagation()}>
+              <div className="w-full sm:max-w-4xl bg-[#faf9f6] text-gray-900 sm:rounded-3xl overflow-hidden shadow-lift border border-gray-200" onClick={(e) => e.stopPropagation()}>
                 {/* header */}
-                <div className="relative px-5 sm:px-8 pt-6 pb-5 border-b border-slate-800/80 bg-gradient-to-b from-slate-900 to-[#0b0f14]">
+                <div className="relative px-5 sm:px-8 pt-6 pb-5 border-b border-gray-200 bg-white">
                   <div className="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-transparent via-amber-400/70 to-transparent" />
-                  <button onClick={() => setAwardeesOpen(false)} aria-label="Close" className="absolute top-4 right-4 w-9 h-9 grid place-items-center rounded-full bg-white/10 text-white hover:bg-white/20">✕</button>
+                  <button onClick={() => setAwardeesOpen(false)} aria-label="Close" className="absolute top-4 right-4 w-9 h-9 grid place-items-center rounded-full bg-gray-100 text-gray-500 hover:bg-gray-200">✕</button>
                   <div className="flex items-center gap-2.5">
                     <img src="/fsia-logo.gif" alt="FSIA" className="w-9 h-9 object-contain" />
-                    <span className="leading-none"><span className="block font-serif font-bold tracking-wide">FSIA DIRECTORY</span><span className="block text-[9px] uppercase tracking-[0.18em] text-amber-300/70 mt-0.5">Forever Star India Awards</span></span>
+                    <span className="leading-none"><span className="block font-serif font-bold tracking-wide text-gray-900">FSIA DIRECTORY</span><span className="block text-[9px] uppercase tracking-[0.18em] text-emerald-700/70 mt-0.5">Forever Star India Awards</span></span>
                   </div>
-                  <p className="mt-4 font-serif italic text-sm sm:text-base text-slate-300 max-w-xl">
+                  <p className="mt-4 font-serif italic text-sm sm:text-base text-gray-500 max-w-xl">
                     Celebrating India&rsquo;s most prestigious titleholders, changemakers and honourees of Forever Star India Awards.
                   </p>
                   {/* filter chips */}
                   <div className="mt-5 flex gap-2 overflow-x-auto pb-1 -mx-1 px-1">
                     {AW_CATS.map((c) => (
-                      <button key={c} onClick={() => setAwFilter(c)} className={`shrink-0 px-4 py-2 rounded-full text-xs font-semibold border transition-colors ${awFilter === c ? 'bg-gradient-to-r from-amber-400 to-amber-500 text-slate-950 border-amber-400' : 'bg-white/5 text-slate-300 border-slate-700 hover:border-amber-400/50'}`}>{c}</button>
+                      <button key={c} onClick={() => setAwFilter(c)} className={`shrink-0 px-4 py-2 rounded-full text-xs font-semibold border transition-colors ${awFilter === c ? 'bg-gradient-to-r from-amber-400 to-amber-500 text-slate-950 border-amber-400' : 'bg-white text-gray-600 border-gray-200 hover:border-amber-400/60'}`}>{c}</button>
                     ))}
                   </div>
                   {/* search */}
                   <div className="mt-3 flex items-center gap-3">
-                    <div className="flex-1 flex items-center gap-2 bg-white/5 border border-slate-700 rounded-full px-4 py-2.5">
-                      <Star size={14} className="text-amber-400 fill-amber-400 shrink-0" />
-                      <input value={awSearch} onChange={(e) => setAwSearch(e.target.value)} placeholder="Search by name, title…" className="bg-transparent outline-none text-sm text-white placeholder:text-slate-500 w-full" />
+                    <div className="flex-1 flex items-center gap-2 bg-white border border-gray-200 rounded-full px-4 py-2.5">
+                      <Star size={14} className="text-amber-500 fill-amber-400 shrink-0" />
+                      <input value={awSearch} onChange={(e) => setAwSearch(e.target.value)} placeholder="Search by name, title…" className="bg-transparent outline-none text-sm text-gray-800 placeholder:text-gray-400 w-full" />
                     </div>
-                    <span className="text-[11px] text-slate-400 shrink-0">Showing <strong className="text-amber-300">{list.length}</strong></span>
+                    <span className="text-[11px] text-gray-500 shrink-0">Showing <strong className="text-emerald-700">{list.length}</strong></span>
                   </div>
                 </div>
                 {/* grid */}
                 <div className="p-4 sm:p-6 grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
-                  {list.map((a) => {
-                    const Card = (
-                      <div className="group relative aspect-[3/4] rounded-2xl overflow-hidden border border-slate-800 bg-slate-900 shadow-lift">
-                        <img src={a.img} alt={a.name} className="absolute inset-0 w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
-                        <span className="absolute top-2.5 left-2.5 inline-flex items-center gap-1 text-[9px] font-bold uppercase tracking-wider text-amber-300 bg-black/50 border border-amber-400/30 px-2 py-0.5 rounded-full backdrop-blur-sm">
-                          <ShieldCheck size={10} /> FSIA Verified
-                        </span>
-                        <div className="absolute inset-x-0 bottom-0 p-3">
-                          <strong className="block font-serif font-bold text-sm text-white leading-tight">{a.name}</strong>
-                          <span className="block text-[11px] text-amber-300 font-medium">{a.handle}</span>
-                          <span className="block text-[9px] uppercase tracking-wider text-slate-300 mt-1">{a.cat}</span>
-                          <div className="mt-2 pt-2 border-t border-white/10 grid grid-cols-2 gap-1 text-[10px]">
-                            <span><span className="block text-slate-400 uppercase tracking-wide">Title</span><span className="text-white font-semibold">{a.award}</span></span>
-                            <span><span className="block text-slate-400 uppercase tracking-wide">Year</span><span className="text-white font-semibold">{a.year}</span></span>
-                          </div>
+                  {list.map((a) => (
+                    <button key={a.name} onClick={() => setAwProfile(a.name)} className="group relative aspect-[3/4] rounded-2xl overflow-hidden border border-gray-200 bg-slate-100 shadow-soft text-left">
+                      <img src={a.img} alt={a.name} className="absolute inset-0 w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/35 to-transparent" />
+                      <span className="absolute top-2.5 left-2.5 inline-flex items-center gap-1 text-[9px] font-bold uppercase tracking-wider text-amber-300 bg-black/50 border border-amber-400/30 px-2 py-0.5 rounded-full backdrop-blur-sm">
+                        <ShieldCheck size={10} /> FSIA Verified
+                      </span>
+                      <div className="absolute inset-x-0 bottom-0 p-3">
+                        <strong className="block font-serif font-bold text-sm text-white leading-tight">{a.name}</strong>
+                        <span className="block text-[11px] text-amber-300 font-medium">{a.handle}</span>
+                        <span className="block text-[9px] uppercase tracking-wider text-slate-200 mt-1">{a.cat}</span>
+                        <div className="mt-2 pt-2 border-t border-white/15 grid grid-cols-2 gap-1 text-[10px]">
+                          <span><span className="block text-slate-300 uppercase tracking-wide">Title</span><span className="text-white font-semibold">{a.award}</span></span>
+                          <span><span className="block text-slate-300 uppercase tracking-wide">Year</span><span className="text-white font-semibold">{a.year}</span></span>
                         </div>
                       </div>
-                    );
-                    return a.href ? <a key={a.name} href={a.href} onClick={() => setAwardeesOpen(false)}>{Card}</a> : <div key={a.name}>{Card}</div>;
-                  })}
+                    </button>
+                  ))}
                 </div>
                 <div className="px-6 pb-6 text-center">
-                  <a href="https://www.fsia.in/top-awardee-in-india" target="_blank" rel="noopener noreferrer" className="text-xs font-semibold text-amber-300 hover:text-white">View full directory on fsia.in →</a>
+                  <a href="https://www.fsia.in/top-awardee-in-india" target="_blank" rel="noopener noreferrer" className="text-xs font-semibold text-emerald-700 hover:text-emerald-900">View full directory on fsia.in →</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      })()}
+
+      {/* AWARDEE PROFILE DETAIL — light editorial (styled like fsia VIP profile) */}
+      {awProfile && (() => {
+        const a = AWARDEES.find((x) => x.name === awProfile);
+        if (!a) return null;
+        return (
+          <div className="fixed inset-0 z-[80] overflow-y-auto bg-slate-950/50 backdrop-blur-sm" role="dialog" aria-modal="true" onClick={() => setAwProfile(null)}>
+            <div className="min-h-full flex items-start justify-center sm:p-6">
+              <div className="w-full sm:max-w-lg bg-[#faf9f6] text-gray-900 sm:rounded-3xl overflow-hidden shadow-lift border border-gray-200 relative" onClick={(e) => e.stopPropagation()}>
+                {/* top bar */}
+                <div className="flex items-center justify-between px-5 py-3 border-b border-gray-200 bg-white">
+                  <span className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-[0.16em] text-emerald-800"><ShieldCheck size={12} /> Verified FSIA Profile</span>
+                  <button onClick={() => setAwProfile(null)} aria-label="Close" className="w-8 h-8 grid place-items-center rounded-full bg-gray-100 text-gray-500 hover:bg-gray-200">✕</button>
+                </div>
+                {/* portrait strip */}
+                <div className="relative h-40 sm:h-52 overflow-hidden bg-slate-100">
+                  <img src={a.img} alt={a.name} className="w-full h-full object-cover object-top" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#faf9f6] via-transparent to-transparent" />
+                </div>
+                {/* body */}
+                <div className="px-6 sm:px-8 pb-6 -mt-6 relative">
+                  <span className="inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-gray-500"><MapPin size={12} className="text-emerald-600" /> {a.region}</span>
+                  <h2 className="mt-1.5 font-serif font-bold text-3xl sm:text-4xl tracking-tight leading-none">{a.name}</h2>
+                  <p className="mt-2 font-serif italic text-sm text-amber-700">Winner, {a.award} {a.year}</p>
+
+                  <div className="mt-5 flex gap-3">
+                    <Quote size={26} className="text-emerald-300 shrink-0" />
+                    <p className="font-serif italic text-sm sm:text-base text-gray-700 leading-relaxed">{a.quote}</p>
+                  </div>
+
+                  <h3 className="mt-6 text-[11px] font-bold uppercase tracking-[0.14em] text-gray-500">Curated Biography</h3>
+                  <p className="mt-2 text-sm text-gray-600 font-light leading-relaxed">{a.bio}</p>
+
+                  <h3 className="mt-6 text-[11px] font-bold uppercase tracking-[0.14em] text-gray-500">Verified Details</h3>
+                  <div className="mt-2 grid grid-cols-2 gap-3">
+                    <div className="rounded-2xl border border-gray-200 bg-white p-4 text-center">
+                      <span className="block text-[10px] uppercase tracking-wide text-gray-400">Category</span>
+                      <span className="block font-serif font-bold text-lg text-gray-900 mt-1">{a.cat}</span>
+                    </div>
+                    <div className="rounded-2xl border border-gray-200 bg-white p-4 text-center">
+                      <span className="block text-[10px] uppercase tracking-wide text-gray-400">Season</span>
+                      <span className="block font-serif font-bold text-lg text-gray-900 mt-1">{a.year}</span>
+                    </div>
+                  </div>
+
+                  <a
+                    href={a.href || 'https://www.fsia.in/top-awardee-in-india'}
+                    {...(a.href ? {} : { target: '_blank', rel: 'noopener noreferrer' })}
+                    onClick={() => { setAwProfile(null); if (a.href) setAwardeesOpen(false); }}
+                    className="btn-sheen mt-6 w-full flex items-center justify-center gap-2 py-3.5 bg-gradient-to-b from-emerald-700 to-emerald-800 text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow-[0_10px_28px_-8px_rgba(6,78,59,0.5)]"
+                  >
+                    {a.href ? 'View Full Profile' : 'View on FSIA Directory'} <ChevronRight size={15} />
+                  </a>
                 </div>
               </div>
             </div>
