@@ -1307,7 +1307,7 @@ export default function ShwetaProfilePage() {
           (a.name.toLowerCase().includes(awSearch.toLowerCase()) || a.award.toLowerCase().includes(awSearch.toLowerCase()))
         );
         return (
-          <div className="fixed inset-0 z-[70] overflow-y-auto bg-slate-950/40 backdrop-blur-sm" role="dialog" aria-modal="true" onClick={() => setAwardeesOpen(false)}>
+          <div className="fixed inset-0 z-[70] overflow-y-auto overscroll-contain bg-slate-950/50" style={{ WebkitOverflowScrolling: 'touch' }} role="dialog" aria-modal="true" onClick={() => setAwardeesOpen(false)}>
             <div className="min-h-full flex items-start justify-center sm:p-6">
               <div className="w-full sm:max-w-4xl bg-[#faf9f6] text-gray-900 sm:rounded-3xl overflow-hidden shadow-lift border border-gray-200" onClick={(e) => e.stopPropagation()}>
                 {/* header */}
@@ -1374,7 +1374,7 @@ export default function ShwetaProfilePage() {
         const a = AWARDEES.find((x) => x.name === awProfile);
         if (!a) return null;
         return (
-          <div className="fixed inset-0 z-[80] overflow-y-auto overscroll-contain bg-slate-950/50 backdrop-blur-sm" style={{ WebkitOverflowScrolling: 'touch' }} role="dialog" aria-modal="true" onClick={() => setAwProfile(null)}>
+          <div className="fixed inset-0 z-[80] overflow-y-auto overscroll-contain bg-slate-950/50" style={{ WebkitOverflowScrolling: 'touch' }} role="dialog" aria-modal="true" onClick={() => setAwProfile(null)}>
               <div className="min-h-full w-full sm:max-w-lg sm:mx-auto sm:my-6 bg-[#faf9f6] text-gray-900 sm:rounded-3xl overflow-hidden shadow-lift border-0 sm:border border-gray-200 relative" onClick={(e) => e.stopPropagation()}>
                 {/* top bar */}
                 <div className="flex items-center justify-between px-5 py-3 border-b border-gray-200 bg-white">
