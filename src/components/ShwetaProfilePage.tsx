@@ -1355,15 +1355,15 @@ export default function ShwetaProfilePage() {
         if (!a) return null;
         return (
           <div className="fixed inset-0 z-[80] overflow-y-auto bg-slate-950/50 backdrop-blur-sm" role="dialog" aria-modal="true" onClick={() => setAwProfile(null)}>
-            <div className="min-h-full flex items-start justify-center sm:p-6">
-              <div className="w-full sm:max-w-lg bg-[#faf9f6] text-gray-900 sm:rounded-3xl overflow-hidden shadow-lift border border-gray-200 relative" onClick={(e) => e.stopPropagation()}>
+            <div className="min-h-full flex items-stretch sm:items-start justify-center sm:p-6">
+              <div className="w-full sm:max-w-lg min-h-screen sm:min-h-0 bg-[#faf9f6] text-gray-900 sm:rounded-3xl overflow-hidden shadow-lift border-0 sm:border border-gray-200 relative flex flex-col" onClick={(e) => e.stopPropagation()}>
                 {/* top bar */}
                 <div className="flex items-center justify-between px-5 py-3 border-b border-gray-200 bg-white">
                   <span className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-[0.16em] text-emerald-800"><ShieldCheck size={12} /> Verified FSIA Profile</span>
                   <button onClick={() => setAwProfile(null)} aria-label="Close" className="w-8 h-8 grid place-items-center rounded-full bg-gray-100 text-gray-500 hover:bg-gray-200">✕</button>
                 </div>
                 {/* photo carousel */}
-                <div className="relative h-52 sm:h-64 overflow-hidden bg-slate-100">
+                <div className="relative h-[52vh] sm:h-80 shrink-0 overflow-hidden bg-slate-100">
                   <img src={a.photos[awPhoto] ?? a.photos[0]} alt={a.name} className="w-full h-full object-cover object-top transition-opacity duration-300" />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#faf9f6] via-transparent to-transparent pointer-events-none" />
                   {a.photos.length > 1 && (
