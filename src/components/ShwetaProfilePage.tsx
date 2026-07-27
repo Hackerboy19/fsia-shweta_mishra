@@ -677,6 +677,22 @@ export default function ShwetaProfilePage() {
     };
   }, []);
 
+  // Measure the true visible viewport height (excludes iOS Safari toolbars) — bulletproof modal sizing
+  const [vpH, setVpH] = useState(0);
+  useEffect(() => {
+    const set = () => setVpH(window.visualViewport?.height ?? window.innerHeight);
+    set();
+    window.visualViewport?.addEventListener('resize', set);
+    window.addEventListener('resize', set);
+    window.addEventListener('orientationchange', set);
+    return () => {
+      window.visualViewport?.removeEventListener('resize', set);
+      window.removeEventListener('resize', set);
+      window.removeEventListener('orientationchange', set);
+    };
+  }, []);
+  const modalH = vpH ? { height: `${vpH}px` } : undefined;
+
   // Lock background scroll while any overlay is open (prevents iOS scroll fighting)
   const anyModal = contactOpen || teamOpen || galleryOpen || awardeesOpen || !!awProfile || !!openSol;
   useEffect(() => {
@@ -1307,7 +1323,7 @@ export default function ShwetaProfilePage() {
           (a.name.toLowerCase().includes(awSearch.toLowerCase()) || a.award.toLowerCase().includes(awSearch.toLowerCase()))
         );
         return (
-          <div className="fixed inset-x-0 top-0 z-[70] h-[100dvh] flex flex-col bg-slate-950/50" role="dialog" aria-modal="true">
+          <div className="fixed inset-x-0 top-0 z-[70] h-[100dvh] flex flex-col bg-slate-950/50" style={modalH} role="dialog" aria-modal="true">
             <div className="flex-1 min-h-0 overflow-y-auto overscroll-contain" style={{ WebkitOverflowScrolling: 'touch' }} onClick={() => setAwardeesOpen(false)}>
               <div className="w-full sm:max-w-4xl sm:mx-auto sm:my-6 bg-[#faf9f6] text-gray-900 sm:rounded-3xl overflow-hidden shadow-lift border-0 sm:border border-gray-200" onClick={(e) => e.stopPropagation()}>
                 {/* header */}
@@ -1374,7 +1390,7 @@ export default function ShwetaProfilePage() {
         const a = AWARDEES.find((x) => x.name === awProfile);
         if (!a) return null;
         return (
-          <div className="fixed inset-x-0 top-0 z-[80] h-[100dvh] flex flex-col bg-slate-950/50" role="dialog" aria-modal="true">
+          <div className="fixed inset-x-0 top-0 z-[80] h-[100dvh] flex flex-col bg-slate-950/50" style={modalH} role="dialog" aria-modal="true">
             <div className="flex-1 min-h-0 overflow-y-auto overscroll-contain" style={{ WebkitOverflowScrolling: 'touch' }} onClick={() => setAwProfile(null)}>
               <div className="w-full sm:max-w-lg sm:mx-auto sm:my-6 bg-[#faf9f6] text-gray-900 sm:rounded-3xl overflow-hidden shadow-lift border-0 sm:border border-gray-200 relative" onClick={(e) => e.stopPropagation()}>
                 {/* top bar */}
