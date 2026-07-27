@@ -1307,9 +1307,9 @@ export default function ShwetaProfilePage() {
           (a.name.toLowerCase().includes(awSearch.toLowerCase()) || a.award.toLowerCase().includes(awSearch.toLowerCase()))
         );
         return (
-          <div className="fixed inset-0 z-[70] overflow-y-auto overscroll-contain bg-slate-950/50" style={{ WebkitOverflowScrolling: 'touch' }} role="dialog" aria-modal="true" onClick={() => setAwardeesOpen(false)}>
-            <div className="min-h-full flex items-start justify-center sm:p-6">
-              <div className="w-full sm:max-w-4xl bg-[#faf9f6] text-gray-900 sm:rounded-3xl overflow-hidden shadow-lift border border-gray-200" onClick={(e) => e.stopPropagation()}>
+          <div className="fixed inset-0 z-[70] flex flex-col bg-slate-950/50" role="dialog" aria-modal="true">
+            <div className="flex-1 min-h-0 overflow-y-auto overscroll-contain" style={{ WebkitOverflowScrolling: 'touch' }} onClick={() => setAwardeesOpen(false)}>
+              <div className="w-full sm:max-w-4xl sm:mx-auto sm:my-6 bg-[#faf9f6] text-gray-900 sm:rounded-3xl overflow-hidden shadow-lift border-0 sm:border border-gray-200" onClick={(e) => e.stopPropagation()}>
                 {/* header */}
                 <div className="relative px-5 sm:px-8 pt-6 pb-5 border-b border-gray-200 bg-white">
                   <div className="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-transparent via-amber-400/70 to-transparent" />
@@ -1374,10 +1374,11 @@ export default function ShwetaProfilePage() {
         const a = AWARDEES.find((x) => x.name === awProfile);
         if (!a) return null;
         return (
-          <div className="fixed inset-0 z-[80] overflow-y-auto overscroll-contain bg-slate-950/50" style={{ WebkitOverflowScrolling: 'touch' }} role="dialog" aria-modal="true" onClick={() => setAwProfile(null)}>
-              <div className="min-h-full w-full sm:max-w-lg sm:mx-auto sm:my-6 bg-[#faf9f6] text-gray-900 sm:rounded-3xl overflow-hidden shadow-lift border-0 sm:border border-gray-200 relative" onClick={(e) => e.stopPropagation()}>
+          <div className="fixed inset-0 z-[80] flex flex-col bg-slate-950/50" role="dialog" aria-modal="true">
+            <div className="flex-1 min-h-0 overflow-y-auto overscroll-contain" style={{ WebkitOverflowScrolling: 'touch' }} onClick={() => setAwProfile(null)}>
+              <div className="w-full sm:max-w-lg sm:mx-auto sm:my-6 bg-[#faf9f6] text-gray-900 sm:rounded-3xl overflow-hidden shadow-lift border-0 sm:border border-gray-200 relative" onClick={(e) => e.stopPropagation()}>
                 {/* top bar */}
-                <div className="flex items-center justify-between px-5 py-3 border-b border-gray-200 bg-white">
+                <div className="sticky top-0 z-20 flex items-center justify-between px-5 py-3 border-b border-gray-200 bg-white">
                   <span className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-[0.16em] text-emerald-800"><ShieldCheck size={12} /> Verified FSIA Profile</span>
                   <button onClick={() => setAwProfile(null)} aria-label="Close" className="w-8 h-8 grid place-items-center rounded-full bg-gray-100 text-gray-500 hover:bg-gray-200">✕</button>
                 </div>
@@ -1436,6 +1437,7 @@ export default function ShwetaProfilePage() {
                   </a>
                 </div>
               </div>
+            </div>
           </div>
         );
       })()}
