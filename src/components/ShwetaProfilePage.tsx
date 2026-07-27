@@ -523,6 +523,16 @@ const SOLUTIONS = [
   },
 ];
 
+// All FSIA awardees (directory gallery — real + category placeholders)
+const AWARDEES = [
+  { name: 'Shweta Mishra', award: 'Super Woman 2026 · Wellness', city: 'Raipur, CG', img: '/shweta-mishra.png', href: '#/' },
+  { name: 'Nidhi Mor', award: 'Mrs Haryana 2025', city: 'Haryana', img: '/gallery-1.svg' },
+  { name: 'Forever Miss India', award: '2026 Titleholder', city: 'India', img: '/gallery-2.svg' },
+  { name: 'Super Woman Award', award: '2026', city: 'India', img: '/gallery-3.svg' },
+  { name: 'Business Excellence', award: 'FSIA Business Award 2026', city: 'India', img: '/gallery-4.svg' },
+  { name: 'Star Kids Champion', award: '2026', city: 'India', img: '/gallery-1.svg' },
+];
+
 // Gallery images (real photo + dummy placeholders — replace with real shots)
 const GALLERY = [
   { src: '/shweta-mishra.png', label: 'Portrait' },
@@ -592,6 +602,7 @@ export default function ShwetaProfilePage() {
   const [contactOpen, setContactOpen] = useState(false);
   const [teamOpen, setTeamOpen] = useState(false);
   const [galleryOpen, setGalleryOpen] = useState(false);
+  const [awardeesOpen, setAwardeesOpen] = useState(false);
   const [lightbox, setLightbox] = useState<number | null>(null);
   const menu = [
     { label: 'Programs', href: '#solutions' },
@@ -942,9 +953,9 @@ export default function ShwetaProfilePage() {
             </li>
             <li className="text-gray-300">/</li>
             <li>
-              <a href="https://fsia.in/awardees" target="_blank" rel="noopener noreferrer" className="hover:text-emerald-700 transition-colors">
+              <button onClick={() => setAwardeesOpen(true)} className="hover:text-emerald-700 transition-colors">
                 Awardees
-              </a>
+              </button>
             </li>
             <li className="text-gray-300">/</li>
             <li>
@@ -1257,6 +1268,56 @@ export default function ShwetaProfilePage() {
               ))}
             </ul>
             <a href="https://fsia.in" target="_blank" rel="noopener noreferrer" className="mt-4 block text-center text-xs font-semibold text-emerald-700">Visit fsia.in →</a>
+          </div>
+        </div>
+      )}
+
+      {/* AWARDEES GALLERY (redesigned "Top Awardees in India") */}
+      {awardeesOpen && (
+        <div className="fixed inset-0 z-[70] overflow-y-auto bg-slate-950/60 backdrop-blur-sm" role="dialog" aria-modal="true" onClick={() => setAwardeesOpen(false)}>
+          <div className="min-h-full flex items-start justify-center p-0 sm:p-6">
+            <div className="w-full sm:max-w-3xl bg-[#f6f5f1] sm:rounded-3xl overflow-hidden shadow-lift" onClick={(e) => e.stopPropagation()}>
+              {/* hero header */}
+              <div className="relative bg-gradient-to-br from-slate-900 via-emerald-950 to-slate-900 text-white p-6 sm:p-8">
+                <div className="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-transparent via-amber-400/60 to-transparent" />
+                <div className="absolute top-0 right-1/4 w-72 h-72 bg-emerald-500/15 rounded-full blur-3xl pointer-events-none" />
+                <button onClick={() => setAwardeesOpen(false)} aria-label="Close" className="absolute top-4 right-4 w-9 h-9 grid place-items-center rounded-full bg-white/10 text-white">✕</button>
+                <div className="relative z-10">
+                  <span className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-[0.16em] text-amber-300 bg-amber-400/10 border border-amber-400/20 px-3 py-1.5 rounded-full">
+                    <Award size={12} /> FSIA 2026
+                  </span>
+                  <h2 className="mt-4 font-serif font-bold text-2xl sm:text-3xl tracking-tight">Top Awardees in India</h2>
+                  <p className="mt-2 text-xs sm:text-sm text-slate-300 font-light max-w-lg">
+                    Celebrating exceptional people making great contributions across India — the honourees of Forever Star India Awards.
+                  </p>
+                </div>
+              </div>
+              {/* awardee grid */}
+              <div className="p-4 sm:p-6 grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
+                {AWARDEES.map((a) => {
+                  const Card = (
+                    <div className="card-hover group h-full bg-white rounded-2xl border border-gray-100 shadow-soft overflow-hidden text-left">
+                      <div className="aspect-[4/5] overflow-hidden bg-slate-100">
+                        <img src={a.img} alt={a.name} className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform" />
+                      </div>
+                      <div className="p-3">
+                        <strong className="block text-sm font-bold text-gray-900 leading-tight">{a.name}</strong>
+                        <span className="block text-[11px] text-emerald-800 font-semibold mt-0.5">{a.award}</span>
+                        <span className="block text-[10px] text-gray-400 mt-0.5">{a.city}</span>
+                      </div>
+                    </div>
+                  );
+                  return a.href ? (
+                    <a key={a.name} href={a.href} onClick={() => setAwardeesOpen(false)}>{Card}</a>
+                  ) : (
+                    <div key={a.name}>{Card}</div>
+                  );
+                })}
+              </div>
+              <div className="px-6 pb-6 text-center">
+                <a href="https://www.fsia.in/top-awardee-in-india" target="_blank" rel="noopener noreferrer" className="text-xs font-semibold text-emerald-700">View all on fsia.in →</a>
+              </div>
+            </div>
           </div>
         </div>
       )}
