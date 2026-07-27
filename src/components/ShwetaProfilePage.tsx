@@ -561,6 +561,19 @@ const WHY = [
   { Icon: Heart, title: 'End-to-End Support', desc: 'Weekly follow-ups and guidance — with you through the whole journey.' },
 ];
 
+// Awardee photo: real image if raster, else an elegant monogram portrait placeholder
+function AwPhoto({ src, name, className = '', mono = false }: { src: string; name: string; className?: string; mono?: boolean }) {
+  const real = /\.(png|jpe?g|webp|gif)$/i.test(src);
+  if (real) return <img src={src} alt={name} className={`${className} object-cover object-top`} />;
+  const initials = name.split(' ').map((w) => w[0]).slice(0, 2).join('');
+  return (
+    <div className={`${className} flex flex-col items-center justify-center gap-1 bg-gradient-to-br from-emerald-500 via-emerald-700 to-emerald-950 text-white`}>
+      <span className={`font-serif font-bold text-amber-200 drop-shadow ${mono ? 'text-lg' : 'text-5xl sm:text-6xl'}`}>{initials}</span>
+      {!mono && <span className="text-[9px] uppercase tracking-[0.2em] text-emerald-100/70">FSIA Awardee</span>}
+    </div>
+  );
+}
+
 // "What Clients Say" carousel — single card + navigable dots
 function Testimonials() {
   const [i, setI] = useState(0);
@@ -1320,7 +1333,7 @@ export default function ShwetaProfilePage() {
                 <div className="p-4 sm:p-6 grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
                   {list.map((a) => (
                     <button key={a.name} onClick={() => { setAwProfile(a.name); setAwPhoto(0); }} className="group relative aspect-[3/4] rounded-2xl overflow-hidden border border-gray-200 bg-slate-100 shadow-soft text-left">
-                      <img src={a.photos[0]} alt={a.name} className="absolute inset-0 w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" />
+                      <AwPhoto src={a.photos[0]} name={a.name} className="absolute inset-0 w-full h-full group-hover:scale-105 transition-transform duration-500" />
                       <div className="absolute inset-0 bg-gradient-to-t from-black via-black/35 to-transparent" />
                       <span className="absolute top-2.5 left-2.5 inline-flex items-center gap-1 text-[9px] font-bold uppercase tracking-wider text-amber-300 bg-black/50 border border-amber-400/30 px-2 py-0.5 rounded-full backdrop-blur-sm">
                         <ShieldCheck size={10} /> FSIA Verified
@@ -1364,7 +1377,7 @@ export default function ShwetaProfilePage() {
                 </div>
                 {/* photo carousel */}
                 <div className="relative h-[48dvh] sm:h-80 shrink-0 overflow-hidden bg-slate-100">
-                  <img src={a.photos[awPhoto] ?? a.photos[0]} alt={a.name} className="w-full h-full object-cover object-top transition-opacity duration-300" />
+                  <AwPhoto src={a.photos[awPhoto] ?? a.photos[0]} name={a.name} className="w-full h-full transition-opacity duration-300" />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#faf9f6] via-transparent to-transparent pointer-events-none" />
                   {a.photos.length > 1 && (
                     <>
@@ -1374,7 +1387,7 @@ export default function ShwetaProfilePage() {
                       <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5">
                         {a.photos.map((p, i) => (
                           <button key={i} aria-label={`Photo ${i + 1}`} onClick={() => setAwPhoto(i)} className={`w-9 h-9 rounded-lg overflow-hidden border-2 ${i === awPhoto ? 'border-amber-400' : 'border-white/70'}`}>
-                            <img src={p} alt="" className="w-full h-full object-cover object-top" />
+                            <AwPhoto src={p} name={a.name} mono className="w-full h-full" />
                           </button>
                         ))}
                       </div>
