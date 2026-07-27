@@ -465,14 +465,62 @@ const TESTIMONIALS = [
   { quote: 'Her empathy and weekly follow-ups kept me motivated. She explains the scientific reason behind every food choice. Truly deserving of the FSIA Super Woman Award!', name: 'Kavita Sahu', city: 'Durg' },
 ];
 
-// Wellness programs shown in the "Solutions" icon grid (tap to reveal detail)
+// Wellness programs — each opens an article-style popup
 const SOLUTIONS = [
-  { Icon: Activity, title: 'Weight Management', tone: 'bg-emerald-100 text-emerald-800', desc: 'Non-starvation fat loss — metabolic reset, cellular nutrition and stable blood sugar, built on Shweta’s own 18kg journey.' },
-  { Icon: Heart, title: 'PCOD & Hormone Care', tone: 'bg-rose-100 text-rose-700', desc: 'Root-cause protocols to restore regular cycles and balance hormones and insulin — food-first, no crash diets.' },
-  { Icon: Microscope, title: 'Thyroid & Metabolism', tone: 'bg-amber-100 text-amber-700', desc: 'Gentle, pharmacist-guided support for sluggish thyroid and a slow metabolism, safely alongside your medicines.' },
-  { Icon: ShieldCheck, title: 'Diabetes Reversal', tone: 'bg-emerald-100 text-emerald-800', desc: 'Lifestyle plans to reverse Type-2 pre-diabetes and stabilise blood sugar with clinically safe changes.' },
-  { Icon: Sparkles, title: 'Lifestyle & Bio-Rhythm', tone: 'bg-violet-100 text-violet-700', desc: 'Sleep, stress and circadian alignment for lasting energy, calm and hormonal balance.' },
-  { Icon: BookOpen, title: 'Preventive Health', tone: 'bg-sky-100 text-sky-700', desc: 'Simple daily habits to prevent illness and stay vibrant and medicine-free for the long run.' },
+  {
+    Icon: Activity, title: 'Weight Management', tone: 'bg-emerald-100 text-emerald-800',
+    desc: 'A non-starvation fat-loss blueprint — metabolic reset, cellular nutrition and stable blood sugar, built on Shweta’s own 18kg transformation.',
+    body: [
+      'Most diets fail because they starve the body and ignore the root cause. Shweta’s Weight Management programme takes the opposite path — it resets your metabolism using food-first, locally-available meals tuned to your body, not a generic chart.',
+      'As a registered pharmacist, Shweta screens for the hidden drivers of stubborn weight — insulin resistance, thyroid imbalance and medication effects — so every change is clinically safe. Combined with circadian habit correction, the result is steady fat loss that actually lasts.',
+    ],
+    bullets: ['Personalised, food-first meal plans', 'Metabolism & blood-sugar focus', 'No crash diets or chemical fat-burners', 'Weekly follow-ups & accountability'],
+  },
+  {
+    Icon: Heart, title: 'PCOD & Hormone Care', tone: 'bg-rose-100 text-rose-700',
+    desc: 'Root-cause protocols to restore regular cycles and balance hormones and insulin — gentle, food-first and sustainable.',
+    body: [
+      'PCOD and hormonal imbalance rarely need extreme measures — they need consistency and the right nutrition. This programme works on the underlying insulin resistance and inflammation that disrupt your cycle.',
+      'Through targeted, seasonal Indian meals, gentle movement and stress regulation, many clients see their cycles regularise within weeks — without harsh restrictions, and safely alongside any medication they already take.',
+    ],
+    bullets: ['Cycle & hormone rebalancing', 'Insulin-resistance support', 'PCOS/PCOD-friendly nutrition', 'Pharmacist-verified safety'],
+  },
+  {
+    Icon: Microscope, title: 'Thyroid & Metabolism', tone: 'bg-amber-100 text-amber-700',
+    desc: 'Pharmacist-guided support for sluggish thyroid and slow metabolism — safely alongside your existing medicines.',
+    body: [
+      'A sluggish thyroid drains energy, slows metabolism and makes weight loss feel impossible. This programme supports thyroid function through nutrition, nutrient timing and lifestyle — never in conflict with your prescription.',
+      'Shweta’s pharmacology background means your thyroid medication, supplements and diet are coordinated as one plan, so you regain energy and momentum without guesswork.',
+    ],
+    bullets: ['Thyroid-supportive lifestyle', 'Energy & metabolism boost', 'Safe with your prescriptions', 'Symptom tracking'],
+  },
+  {
+    Icon: ShieldCheck, title: 'Diabetes Reversal', tone: 'bg-emerald-100 text-emerald-800',
+    desc: 'Lifestyle plans to reverse Type-2 pre-diabetes and stabilise blood sugar with clinically safe changes.',
+    body: [
+      'Type-2 pre-diabetes is often reversible with the right food and habits. This programme stabilises blood sugar through balanced meals, smart carb timing and sustainable movement.',
+      'Every change is monitored and clinically safe — designed to reduce spikes, improve markers and, wherever possible, lower dependence on medication under your doctor’s guidance.',
+    ],
+    bullets: ['Blood-sugar stabilisation', 'Type-2 pre-diabetes focus', 'Clinically safe protocols', 'Ongoing monitoring'],
+  },
+  {
+    Icon: Sparkles, title: 'Lifestyle & Bio-Rhythm', tone: 'bg-violet-100 text-violet-700',
+    desc: 'Sleep, stress and circadian alignment for lasting energy, calm and hormonal balance.',
+    body: [
+      'Health isn’t only what you eat — it’s when you sleep, how you handle stress and how aligned your day is with your body clock. This programme restores your natural circadian rhythm.',
+      'By fixing sleep, managing stress and syncing meals and activity to your bio-rhythm, clients report deeper energy, steadier mood and better hormonal balance — the foundation every other result is built on.',
+    ],
+    bullets: ['Sleep & circadian reset', 'Stress-management routines', 'Daily bio-rhythm mapping', 'Sustainable habit building'],
+  },
+  {
+    Icon: BookOpen, title: 'Preventive Health', tone: 'bg-sky-100 text-sky-700',
+    desc: 'Simple daily habits to prevent illness and stay vibrant and medicine-free for the long run.',
+    body: [
+      'The best treatment is prevention. This programme builds simple, repeatable daily habits that keep you and your family vibrant and reduce the risk of lifestyle disease.',
+      'From immunity and nutrition to screenings and everyday routines, Shweta helps you stay ahead of problems — so wellness becomes a way of life, not a reaction to illness.',
+    ],
+    bullets: ['Immunity & vitality focus', 'Preventive screenings guidance', 'Family wellness habits', 'Long-term medicine-free living'],
+  },
 ];
 
 // Gallery images (real photo + dummy placeholders — replace with real shots)
@@ -996,31 +1044,19 @@ export default function ShwetaProfilePage() {
           <FadeInOnScroll>
             <section id="solutions" aria-labelledby="heading-solutions" className="bg-white rounded-3xl border border-gray-200/70 shadow-card p-6 sm:p-8 space-y-6">
               <SectionHead id="heading-solutions" eyebrow="Core Programs" title="Wellness for Every Stage of Life" subtitle="Structured, medicine-free protocols tailored to your body and your goals." />
-              <StaggerReveal as="ul" className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4 items-start">
-                {SOLUTIONS.map(({ Icon, title, tone, desc }) => {
-                  const isOpen = openSol === title;
-                  return (
-                    <li key={title} className={`group rounded-2xl border bg-gradient-to-b from-slate-50/70 to-white shadow-soft transition-colors ${isOpen ? 'border-emerald-300' : 'border-gray-100 hover:border-emerald-200'}`}>
-                      <button
-                        onClick={() => setOpenSol(isOpen ? null : title)}
-                        aria-expanded={isOpen}
-                        className="w-full p-4 sm:p-5 flex flex-col items-center text-center gap-2.5"
-                      >
-                        <span className={`w-12 h-12 rounded-2xl flex items-center justify-center ${tone} group-hover:scale-105 transition-transform`}><Icon size={22} /></span>
-                        <span className="text-xs sm:text-sm font-semibold text-gray-800 leading-tight">{title}</span>
-                        <span className="inline-flex items-center gap-1 text-[10px] font-semibold text-emerald-700/80">
-                          {isOpen ? 'Close' : 'Learn more'}
-                          <ChevronDown size={12} className={`transition-transform ${isOpen ? 'rotate-180' : ''}`} />
-                        </span>
-                      </button>
-                      <div className="grid transition-[grid-template-rows] duration-300 ease-out" style={{ gridTemplateRows: isOpen ? '1fr' : '0fr' }}>
-                        <div className="overflow-hidden">
-                          <p className="px-4 sm:px-5 pb-4 pt-0 text-[11px] sm:text-xs text-gray-600 leading-relaxed text-center">{desc}</p>
-                        </div>
-                      </div>
-                    </li>
-                  );
-                })}
+              <StaggerReveal as="ul" className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
+                {SOLUTIONS.map(({ Icon, title, tone }) => (
+                  <li key={title}>
+                    <button
+                      onClick={() => setOpenSol(title)}
+                      className="card-hover group w-full h-full p-4 sm:p-5 bg-gradient-to-b from-slate-50/70 to-white rounded-2xl border border-gray-100 hover:border-emerald-200 flex flex-col items-center text-center gap-2.5 shadow-soft"
+                    >
+                      <span className={`w-12 h-12 rounded-2xl flex items-center justify-center ${tone} group-hover:scale-105 transition-transform`}><Icon size={22} /></span>
+                      <span className="text-xs sm:text-sm font-semibold text-gray-800 leading-tight">{title}</span>
+                      <span className="inline-flex items-center gap-1 text-[10px] font-semibold text-emerald-700/80">Read more <ChevronRight size={11} /></span>
+                    </button>
+                  </li>
+                ))}
               </StaggerReveal>
             </section>
           </FadeInOnScroll>
@@ -1129,6 +1165,56 @@ export default function ShwetaProfilePage() {
         </div>
 
       </div>
+
+      {/* SOLUTION ARTICLE POPUP */}
+      {openSol && (() => {
+        const s = SOLUTIONS.find((x) => x.title === openSol);
+        if (!s) return null;
+        const { Icon, tone } = s;
+        return (
+          <div className="fixed inset-0 z-[70] flex items-end sm:items-center justify-center" role="dialog" aria-modal="true">
+            <div className="absolute inset-0 bg-slate-950/50 backdrop-blur-sm" onClick={() => setOpenSol(null)} />
+            <div className="relative w-full sm:max-w-lg bg-white rounded-t-3xl sm:rounded-3xl shadow-lift max-h-[88vh] overflow-y-auto">
+              {/* article header */}
+              <div className="relative p-6 sm:p-7 border-b border-gray-100 bg-gradient-to-b from-slate-50/70 to-white">
+                <button onClick={() => setOpenSol(null)} aria-label="Close" className="absolute top-4 right-4 w-8 h-8 grid place-items-center rounded-full bg-gray-100 text-gray-500">✕</button>
+                <span className={`w-14 h-14 rounded-2xl flex items-center justify-center ${tone}`}><Icon size={26} /></span>
+                <span className="block mt-4 text-[10px] font-bold uppercase tracking-[0.16em] text-emerald-700/70">Wellness Programme</span>
+                <h2 className="mt-1 text-2xl font-serif font-bold text-gray-900 tracking-tight">{s.title}</h2>
+                <span className="block mt-2 h-1 w-12 rounded-full bg-gradient-to-r from-emerald-600 to-emerald-400" />
+              </div>
+              {/* article body */}
+              <div className="p-6 sm:p-7 space-y-4">
+                <p className="text-sm text-gray-700 font-medium leading-relaxed">{s.desc}</p>
+                {s.body.map((para, i) => (
+                  <p key={i} className="text-sm text-gray-600 font-light leading-relaxed">{para}</p>
+                ))}
+                <div className="pt-1">
+                  <h3 className="text-xs font-bold uppercase tracking-wide text-gray-500 mb-2">What&rsquo;s included</h3>
+                  <ul className="space-y-2">
+                    {s.bullets.map((b) => (
+                      <li key={b} className="flex items-start gap-2.5 text-sm text-gray-700">
+                        <CheckCircle2 size={16} className="text-emerald-600 shrink-0 mt-0.5" /> {b}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="flex items-center gap-1.5 text-[11px] text-emerald-800 bg-emerald-50 border border-emerald-100 rounded-xl px-3 py-2">
+                  <ShieldCheck size={13} /> FSIA-verified programme · pharmacist-supervised
+                </div>
+                <div className="flex flex-col sm:flex-row gap-2.5 pt-1">
+                  <a href="#consultation" onClick={() => setOpenSol(null)} className="btn-sheen flex-1 inline-flex items-center justify-center gap-2 py-3 bg-gradient-to-b from-emerald-700 to-emerald-800 text-white font-bold text-xs uppercase tracking-wider rounded-xl">
+                    <Calendar size={15} /> Book Free Consultation
+                  </a>
+                  <a href={`https://wa.me/919425212345?text=${whatsappMessage}`} target="_blank" rel="noopener noreferrer" className="flex-1 inline-flex items-center justify-center gap-2 py-3 border border-emerald-200 text-emerald-800 font-bold text-xs uppercase tracking-wider rounded-xl">
+                    <MessageSquare size={15} /> WhatsApp
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      })()}
 
       {/* CONTACT SHEET (merged Call + WhatsApp) */}
       {contactOpen && (
