@@ -523,14 +523,17 @@ const SOLUTIONS = [
   },
 ];
 
-// All FSIA awardees (directory gallery — real + category placeholders)
+// All FSIA awardees (real names from fsia.in — photos are placeholders, swap when available)
 const AWARDEES = [
   { name: 'Shweta Mishra', award: 'Super Woman 2026 · Wellness', city: 'Raipur, CG', img: '/shweta-mishra.png', href: '#/' },
   { name: 'Nidhi Mor', award: 'Mrs Haryana 2025', city: 'Haryana', img: '/gallery-1.svg' },
-  { name: 'Forever Miss India', award: '2026 Titleholder', city: 'India', img: '/gallery-2.svg' },
-  { name: 'Super Woman Award', award: '2026', city: 'India', img: '/gallery-3.svg' },
-  { name: 'Business Excellence', award: 'FSIA Business Award 2026', city: 'India', img: '/gallery-4.svg' },
-  { name: 'Star Kids Champion', award: '2026', city: 'India', img: '/gallery-1.svg' },
+  { name: 'Neeharika Bethanapalli', award: 'Miss India 2025', city: 'India', img: '/gallery-2.svg' },
+  { name: 'Bhumika Songara', award: 'Mrs India 2025', city: 'India', img: '/gallery-3.svg' },
+  { name: 'Anjali Sinha', award: 'Mrs India 2025', city: 'India', img: '/gallery-4.svg' },
+  { name: 'Tanvi Yatin Khairnar', award: 'Miss Teen India 2025', city: 'India', img: '/gallery-1.svg' },
+  { name: 'Dr Srujana Devi', award: 'Miss Forever Universe India 2025', city: 'India', img: '/gallery-2.svg' },
+  { name: 'Saartha Sameer Gore', award: 'Miss Forever Universe 2025', city: 'India', img: '/gallery-3.svg' },
+  { name: 'Gloria Kotwal', award: 'Miss Teen Universe 2025', city: 'India', img: '/gallery-4.svg' },
 ];
 
 // Gallery images (real photo + dummy placeholders — replace with real shots)
