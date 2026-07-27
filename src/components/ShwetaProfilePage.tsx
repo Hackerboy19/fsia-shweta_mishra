@@ -677,6 +677,13 @@ export default function ShwetaProfilePage() {
     };
   }, []);
 
+  // Lock background scroll while any overlay is open (prevents iOS scroll fighting)
+  const anyModal = contactOpen || teamOpen || galleryOpen || awardeesOpen || !!awProfile || !!openSol;
+  useEffect(() => {
+    document.body.style.overflow = anyModal ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
+  }, [anyModal]);
+
   const goToSection = (key: typeof activeTab) => {
     setActiveTab(key);
     requestAnimationFrame(() =>
@@ -1367,9 +1374,8 @@ export default function ShwetaProfilePage() {
         const a = AWARDEES.find((x) => x.name === awProfile);
         if (!a) return null;
         return (
-          <div className="fixed inset-0 z-[80] overflow-y-auto bg-slate-950/50 backdrop-blur-sm" role="dialog" aria-modal="true" onClick={() => setAwProfile(null)}>
-            <div className="min-h-full flex items-stretch sm:items-start justify-center sm:p-6">
-              <div className="w-full sm:max-w-lg min-h-[100dvh] sm:min-h-0 bg-[#faf9f6] text-gray-900 sm:rounded-3xl overflow-hidden shadow-lift border-0 sm:border border-gray-200 relative flex flex-col" onClick={(e) => e.stopPropagation()}>
+          <div className="fixed inset-0 z-[80] overflow-y-auto overscroll-contain bg-slate-950/50 backdrop-blur-sm" style={{ WebkitOverflowScrolling: 'touch' }} role="dialog" aria-modal="true" onClick={() => setAwProfile(null)}>
+              <div className="min-h-full w-full sm:max-w-lg sm:mx-auto sm:my-6 bg-[#faf9f6] text-gray-900 sm:rounded-3xl overflow-hidden shadow-lift border-0 sm:border border-gray-200 relative" onClick={(e) => e.stopPropagation()}>
                 {/* top bar */}
                 <div className="flex items-center justify-between px-5 py-3 border-b border-gray-200 bg-white">
                   <span className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-[0.16em] text-emerald-800"><ShieldCheck size={12} /> Verified FSIA Profile</span>
@@ -1430,7 +1436,6 @@ export default function ShwetaProfilePage() {
                   </a>
                 </div>
               </div>
-            </div>
           </div>
         );
       })()}
