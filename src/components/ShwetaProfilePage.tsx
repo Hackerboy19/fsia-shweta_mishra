@@ -1307,7 +1307,7 @@ export default function ShwetaProfilePage() {
           (a.name.toLowerCase().includes(awSearch.toLowerCase()) || a.award.toLowerCase().includes(awSearch.toLowerCase()))
         );
         return (
-          <div className="fixed inset-0 z-[70] flex flex-col bg-slate-950/50" role="dialog" aria-modal="true">
+          <div className="fixed inset-x-0 top-0 z-[70] h-[100dvh] flex flex-col bg-slate-950/50" role="dialog" aria-modal="true">
             <div className="flex-1 min-h-0 overflow-y-auto overscroll-contain" style={{ WebkitOverflowScrolling: 'touch' }} onClick={() => setAwardeesOpen(false)}>
               <div className="w-full sm:max-w-4xl sm:mx-auto sm:my-6 bg-[#faf9f6] text-gray-900 sm:rounded-3xl overflow-hidden shadow-lift border-0 sm:border border-gray-200" onClick={(e) => e.stopPropagation()}>
                 {/* header */}
@@ -1360,7 +1360,7 @@ export default function ShwetaProfilePage() {
                     </button>
                   ))}
                 </div>
-                <div className="px-6 pb-6 text-center">
+                <div className="px-6 pb-[calc(2.5rem+env(safe-area-inset-bottom))] sm:pb-6 text-center">
                   <a href="https://www.fsia.in/top-awardee-in-india" target="_blank" rel="noopener noreferrer" className="text-xs font-semibold text-emerald-700 hover:text-emerald-900">View full directory on fsia.in →</a>
                 </div>
               </div>
@@ -1374,7 +1374,7 @@ export default function ShwetaProfilePage() {
         const a = AWARDEES.find((x) => x.name === awProfile);
         if (!a) return null;
         return (
-          <div className="fixed inset-0 z-[80] flex flex-col bg-slate-950/50" role="dialog" aria-modal="true">
+          <div className="fixed inset-x-0 top-0 z-[80] h-[100dvh] flex flex-col bg-slate-950/50" role="dialog" aria-modal="true">
             <div className="flex-1 min-h-0 overflow-y-auto overscroll-contain" style={{ WebkitOverflowScrolling: 'touch' }} onClick={() => setAwProfile(null)}>
               <div className="w-full sm:max-w-lg sm:mx-auto sm:my-6 bg-[#faf9f6] text-gray-900 sm:rounded-3xl overflow-hidden shadow-lift border-0 sm:border border-gray-200 relative" onClick={(e) => e.stopPropagation()}>
                 {/* top bar */}
@@ -1402,7 +1402,7 @@ export default function ShwetaProfilePage() {
                   )}
                 </div>
                 {/* body */}
-                <div className="px-6 sm:px-8 pb-6 pt-5 relative">
+                <div className="px-6 sm:px-8 pt-5 pb-[calc(2.5rem+env(safe-area-inset-bottom))] sm:pb-8 relative">
                   <span className="inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-gray-500"><MapPin size={12} className="text-emerald-600" /> {a.region}</span>
                   <h2 className="mt-1.5 font-serif font-bold text-3xl sm:text-4xl tracking-tight leading-none">{a.name}</h2>
                   <p className="mt-2 font-serif italic text-sm text-amber-700">Winner, {a.award} {a.year}</p>
