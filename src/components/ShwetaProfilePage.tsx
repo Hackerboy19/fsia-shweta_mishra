@@ -1003,13 +1003,15 @@ export default function ShwetaProfilePage() {
             </li>
             <li className="text-gray-300">/</li>
             <li>
+              <a href="#/" className="font-semibold text-gray-900 hover:text-emerald-700 transition-colors">
+                Shweta Mishra
+              </a>
+            </li>
+            <li className="text-gray-300">/</li>
+            <li>
               <button onClick={() => setGalleryOpen(true)} className="hover:text-emerald-700 transition-colors">
                 Gallery
               </button>
-            </li>
-            <li className="text-gray-300">/</li>
-            <li className="font-semibold text-gray-900" aria-current="page">
-              Shweta Mishra
             </li>
           </ol>
         </nav>
