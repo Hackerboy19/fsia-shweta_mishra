@@ -549,7 +549,7 @@ const GALLERY = [
 // FSIA team members (placeholder — replace with real names/roles)
 const TEAM = [
   { name: 'Forever Star India Awards', role: 'National Awards & Directory Body', initials: 'FS' },
-  { name: 'Nominations Desk', role: 'Awardee onboarding & verification', initials: 'ND' },
+  { name: 'Nominations Desk', role: 'Contestant onboarding & verification', initials: 'ND' },
   { name: 'Profile Support', role: 'Directory profiles & updates', initials: 'PS' },
   { name: 'Media & PR', role: 'Press, features & coverage', initials: 'MP' },
 ];
@@ -569,7 +569,7 @@ function AwPhoto({ src, name, className = '', mono = false }: { src: string; nam
   return (
     <div className={`${className} flex flex-col items-center justify-center gap-1 bg-gradient-to-br from-emerald-500 via-emerald-700 to-emerald-950 text-white`}>
       <span className={`font-serif font-bold text-amber-200 drop-shadow ${mono ? 'text-lg' : 'text-5xl sm:text-6xl'}`}>{initials}</span>
-      {!mono && <span className="text-[9px] uppercase tracking-[0.2em] text-emerald-100/70">FSIA Awardee</span>}
+      {!mono && <span className="text-[9px] uppercase tracking-[0.2em] text-emerald-100/70">FSIA Contestant</span>}
     </div>
   );
 }
@@ -998,7 +998,7 @@ export default function ShwetaProfilePage() {
             <li className="text-gray-300">/</li>
             <li>
               <button onClick={() => setAwardeesOpen(true)} className="hover:text-emerald-700 transition-colors">
-                Awardees
+                Contestants
               </button>
             </li>
             <li className="text-gray-300">/</li>
@@ -1010,7 +1010,7 @@ export default function ShwetaProfilePage() {
             <li className="text-gray-300">/</li>
             <li>
               <button onClick={() => setGalleryOpen(true)} className="hover:text-emerald-700 transition-colors">
-                Gallery
+                Photo
               </button>
             </li>
           </ol>
@@ -1466,7 +1466,7 @@ export default function ShwetaProfilePage() {
           <div className="absolute inset-0 bg-slate-950/60 backdrop-blur-sm" onClick={() => { setGalleryOpen(false); setLightbox(null); }} />
           <div className="relative w-full sm:max-w-lg bg-white rounded-t-3xl sm:rounded-3xl p-6 shadow-lift max-h-[85vh] overflow-y-auto">
             <div className="flex items-center justify-between mb-4">
-              <h3 className="font-serif font-bold text-lg text-gray-900">Gallery — Shweta Mishra</h3>
+              <h3 className="font-serif font-bold text-lg text-gray-900">Photo — Shweta Mishra</h3>
               <button onClick={() => setGalleryOpen(false)} aria-label="Close" className="w-8 h-8 grid place-items-center rounded-full bg-gray-100 text-gray-500">✕</button>
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
