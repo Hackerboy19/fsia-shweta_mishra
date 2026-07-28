@@ -71,8 +71,8 @@ export default function ContactFooter() {
   );
   
   // Real link formulation using standard international format for demo/coaching
-  const whatsappLink = `https://wa.me/919425212345?text=${whatsappMessage}`;
-  const emailLink = `mailto:pm37855@gmail.com?subject=Wellness%20Discovery%20Call%20Request&body=Hello%20Shweta,%0D%0A%0D%0AI%20would%20love%20to%20book%20a%20clinical%20wellness%20coaching%20session%20with%20you.%0D%0A%0D%0AKind%20regards.`;
+  const whatsappLink = `https://wa.me/919983286999?text=${whatsappMessage}`;
+  const emailLink = `mailto:starindiaaward@gmail.com?subject=Wellness%20Discovery%20Call%20Request&body=Hello%20Shweta,%0D%0A%0D%0AI%20would%20love%20to%20book%20a%20clinical%20wellness%20coaching%20session%20with%20you.%0D%0A%0D%0AKind%20regards.`;
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -118,7 +118,7 @@ export default function ContactFooter() {
                   </div>
                   <div>
                     <p className="text-[9px] uppercase text-slate-500 font-bold tracking-wider">Immediate Chat</p>
-                    <p className="font-medium font-mono">+91 94252 12345 (WhatsApp)</p>
+                    <p className="font-medium font-mono">+91 99832 86999 (WhatsApp)</p>
                   </div>
                 </a>
 
@@ -132,7 +132,7 @@ export default function ContactFooter() {
                   </div>
                   <div>
                     <p className="text-[9px] uppercase text-slate-500 font-bold tracking-wider">Official Email</p>
-                    <p className="font-medium font-mono font-light">pm37855@gmail.com</p>
+                    <p className="font-medium font-mono font-light">starindiaaward@gmail.com</p>
                   </div>
                 </a>
               </div>

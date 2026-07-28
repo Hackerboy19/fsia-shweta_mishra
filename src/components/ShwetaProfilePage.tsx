@@ -738,8 +738,8 @@ export default function ShwetaProfilePage() {
                 'description':
                   'Shweta Mishra is the Best Wellness Coach in Raipur, Registered Pharmacist, Holistic Health Mentor, and Weight Loss Coach in Raipur specializing in medicine-free lifestyle transformations.',
                 'image': 'https://fsia.in/og-image.png',
-                'telephone': '+919425212345',
-                'email': 'pm37855@gmail.com',
+                'telephone': '+919983286999',
+                'email': 'starindiaaward@gmail.com',
                 'address': {
                   '@type': 'PostalAddress',
                   'streetAddress': 'VIP Road Clinic',
@@ -780,8 +780,8 @@ export default function ShwetaProfilePage() {
                   'Best Wellness Coach in Raipur — starvation-free weight loss, PCOD/PCOS reversal, and medicine-free lifestyle transformation led by a registered pharmacist.',
                 'priceRange': '₹₹',
                 'currenciesAccepted': 'INR',
-                'telephone': '+919425212345',
-                'email': 'pm37855@gmail.com',
+                'telephone': '+919983286999',
+                'email': 'starindiaaward@gmail.com',
                 'founder': {
                   '@id': 'https://fsia.in/directory/wellness-coaches/raipur/shweta-mishra#person'
                 },
@@ -1185,24 +1185,24 @@ export default function ShwetaProfilePage() {
                   <p className="text-xs sm:text-sm text-emerald-100/80 font-light mt-2">Book a free diagnostic consultation in Raipur — review your biological profile, discuss symptoms, and map out a safe starting point.</p>
                 </div>
                 <div className="space-y-3">
-                  <a href="tel:+919425212345" className="flex items-center gap-3 group">
+                  <a href="tel:+919983286999" className="flex items-center gap-3 group">
                     <span className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center shrink-0"><PhoneCall size={17} className="text-amber-300" /></span>
-                    <span className="text-sm font-mono group-hover:text-amber-200 transition-colors">+91 94252 12345</span>
+                    <span className="text-sm font-mono group-hover:text-amber-200 transition-colors">+91 99832 86999</span>
                   </a>
-                  <a href="mailto:pm37855@gmail.com" className="flex items-center gap-3 group">
+                  <a href="mailto:starindiaaward@gmail.com" className="flex items-center gap-3 group">
                     <span className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center shrink-0"><Heart size={17} className="text-amber-300" /></span>
-                    <span className="text-sm group-hover:text-amber-200 transition-colors break-all">pm37855@gmail.com</span>
+                    <span className="text-sm group-hover:text-amber-200 transition-colors break-all">starindiaaward@gmail.com</span>
                   </a>
                   <div className="flex items-center gap-3">
                     <span className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center shrink-0"><MapPin size={17} className="text-amber-300" /></span>
                     <span className="text-sm">VIP Road Clinic, Raipur, Chhattisgarh</span>
                   </div>
-                  <a href={`https://wa.me/919425212345?text=${whatsappMessage}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 group">
+                  <a href={`https://wa.me/919983286999?text=${whatsappMessage}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 group">
                     <span className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center shrink-0"><MessageSquare size={17} className="text-emerald-300" /></span>
                     <span className="text-sm group-hover:text-emerald-200 transition-colors">Chat on WhatsApp</span>
                   </a>
                 </div>
-                <a href={`https://wa.me/919425212345?text=${whatsappMessage}`} target="_blank" rel="noopener noreferrer" className="btn-sheen glow-pulse w-full flex items-center justify-center gap-2 py-3.5 bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-500 hover:to-amber-600 text-slate-950 font-bold text-sm uppercase tracking-wider rounded-xl shadow-lg transition-all">
+                <a href={`https://wa.me/919983286999?text=${whatsappMessage}`} target="_blank" rel="noopener noreferrer" className="btn-sheen glow-pulse w-full flex items-center justify-center gap-2 py-3.5 bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-500 hover:to-amber-600 text-slate-950 font-bold text-sm uppercase tracking-wider rounded-xl shadow-lg transition-all">
                   <Calendar size={17} /> Schedule a Free Consultation
                 </a>
               </div>
@@ -1263,7 +1263,7 @@ export default function ShwetaProfilePage() {
                   <a href="#consultation" onClick={() => setOpenSol(null)} className="btn-sheen flex-1 inline-flex items-center justify-center gap-2 py-3 bg-gradient-to-b from-emerald-700 to-emerald-800 text-white font-bold text-xs uppercase tracking-wider rounded-xl">
                     <Calendar size={15} /> Book Free Consultation
                   </a>
-                  <a href={`https://wa.me/919425212345?text=${whatsappMessage}`} target="_blank" rel="noopener noreferrer" className="flex-1 inline-flex items-center justify-center gap-2 py-3 border border-emerald-200 text-emerald-800 font-bold text-xs uppercase tracking-wider rounded-xl">
+                  <a href={`https://wa.me/919983286999?text=${whatsappMessage}`} target="_blank" rel="noopener noreferrer" className="flex-1 inline-flex items-center justify-center gap-2 py-3 border border-emerald-200 text-emerald-800 font-bold text-xs uppercase tracking-wider rounded-xl">
                     <MessageSquare size={15} /> WhatsApp
                   </a>
                 </div>
@@ -1283,11 +1283,11 @@ export default function ShwetaProfilePage() {
               <button onClick={() => setContactOpen(false)} aria-label="Close" className="w-8 h-8 grid place-items-center rounded-full bg-gray-100 text-gray-500">✕</button>
             </div>
             <div className="space-y-3">
-              <a href="tel:+919425212345" className="flex items-center gap-3 p-3.5 rounded-2xl border border-emerald-200 bg-emerald-50">
+              <a href="tel:+919983286999" className="flex items-center gap-3 p-3.5 rounded-2xl border border-emerald-200 bg-emerald-50">
                 <span className="w-10 h-10 rounded-full bg-emerald-600 text-white grid place-items-center"><PhoneCall size={18} /></span>
-                <span><strong className="block text-sm text-gray-900">Call now</strong><span className="text-xs text-gray-500 font-mono">+91 94252 12345</span></span>
+                <span><strong className="block text-sm text-gray-900">Call now</strong><span className="text-xs text-gray-500 font-mono">+91 99832 86999</span></span>
               </a>
-              <a href={`https://wa.me/919425212345?text=${whatsappMessage}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 p-3.5 rounded-2xl border border-emerald-200 bg-white">
+              <a href={`https://wa.me/919983286999?text=${whatsappMessage}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 p-3.5 rounded-2xl border border-emerald-200 bg-white">
                 <span className="w-10 h-10 rounded-full bg-emerald-500 text-white grid place-items-center"><MessageSquare size={18} /></span>
                 <span><strong className="block text-sm text-gray-900">WhatsApp</strong><span className="text-xs text-gray-500">Chat instantly</span></span>
               </a>
